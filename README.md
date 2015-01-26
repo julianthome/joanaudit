@@ -17,7 +17,7 @@
 JoanAudit is a security-slicing tool based on the [Joana](http://pp.ipd.kit.edu/projects/joana/) framework which can be downloaded from
 [here](https://github.com/jgf/joana).
 
-![](https://github.com/julianthome/joanaudit/blob/master/img/tool.png)
+<img src="https://github.com/julianthome/joanaudit/blob/master/img/tool.png" alt="Overview" width="200px">
 
 ## Directory Structure
 
