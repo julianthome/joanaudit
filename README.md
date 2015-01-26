@@ -1,16 +1,23 @@
 # JoanAudit 
 
 [Overview](#Overview)
+
 [Directory Structure](#Directory Structure)
+
 [Capabilities of JoanAudit](#capabilities-of-joanaudit)
+
 [Configuration](#Configuration)
+
 [References](#references)
+
 [Acknowledgements](#acknowledgements)
 
 # Overview
 
 JoanAudit is a security-slicing tool based on the [Joana](http://pp.ipd.kit.edu/projects/joana/) framework which can be downloaded from
 [here](https://github.com/jgf/joana).
+
+[Overview](/img/tool.svg)
 
 ## Directory Structure
 
