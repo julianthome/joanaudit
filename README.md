@@ -41,22 +41,6 @@ The directories of this repository and their meaning are as follows:
 * cfg/: a sample configuration file
 * cstudies/: the web applications that we used in our evaluation
 
-# Capabilities of JoanAudit
-
-JoanAudit is a single executable *.jar*-File that can be executed right from a shell. 
-For executing it, please set the environment variable *JAVA_HOME* first by typing the 
-following command:
-
-``` bash
-export JAVA_HOME="<path>"
-```
-
-After that, one can execute JoanAudit by typing:
-
-``` bash
-java -jar JoanAudit.jar <options>
-```
-
 # Configuration
 
 
@@ -243,6 +227,61 @@ should be matched.
 	<elem name="snk_xi"/>
 </class>
 ```
+
+
+# Usage
+
+JoanAudit is a single executable *.jar*-File that can be executed right from a shell. 
+For executing it, please set the environment variable *JAVA_HOME* first by typing the 
+following command:
+
+``` bash
+export JAVA_HOME="<path>"
+```
+
+After that, one can execute JoanAudit by typing:
+
+``` bash
+java -jar JoanAudit.jar <options>
+```
+
+For looking at the different command line options provided by JoanAudit, please type the following command:
+
+``` bash
+java -jar JoanAudit.jar -h
+```
+
+The following table explains the meaning of the different options that can be configured:
+
+
+| biofuzz-tk        | meaning | 
+| ------------- |:-------------:| 
+|-arch,--archivepath <arch>   |               Path to the jar file to test 
+                                             for security vulnerabilites -
+                                             note that this does not work
+                                             for ear/war (extract them
+                                             first and use the dir option)|
+| -cfg,--config <cfg>        |                 Path to the JoanAudit
+                                             configuration file in XML
+                                             format. The basename has to
+                                             be config.xml. You can work
+                                             with xincludes.|
+| -chopout,--chop-out-file <chopoutputfile> |  serialize the chop to a file |
+| -cp,--classpath <cp>  |                      Classpath - multiple entries |
+                                             should be separated by ':'
+| -dir,--directorypath <dir>   |               path to the directory |
+                                             containing the java sources
+| -ept,--entrypoint <entrypoint>  |            The entrypoint to start the
+                                             analysis |
+| -h                           |               print this message |
+| -in,--sdg-in-file <inputfile>  |             read the SDG file |
+| -jbd,--joanabasedir <jbd>     |              Joana Basedir - needed to
+                                             load Java stubs. |
+| -lept,--list_entrypoints    |                List all possible entrypoints
+                                             (config.xml is used for
+                                             filtering) |
+| -sdgout,--sdg-out-file <outputfile>  |       serialize the SDG to a file
+| -src,--check_sources      |                  Check all java source files |
 
 
 
