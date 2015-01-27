@@ -93,12 +93,11 @@ more detail.
 The security lattice is used for information flow analysis. More specifically, it is used to augment 
 parts of the SDG with security label for the purpose of doing IFC on potentially sensitive paths (from sources through declassifiers to sinks). We are using IFC to filter out those paths that can be considered as secure based on the IFC analysis.
 
-A lattice is a partial ordered set of security levels. The configuraiton file *lattice.xml* illustrates the configuration of a simple diamond lattice as depicted in the figure below. The root tag is *<lattice>*  contains
+A lattice is a partial ordered set of security levels. The configuration file *lattice.xml* illustrates the configuration of a simple diamond lattice as depicted in the figure below. The root tag is *<lattice>*  contains
 two subtags, namely *levels* that defines the different security levels that should be present in the lattice the
 *<relations>* tag contains the relations between them. Each *<level>* tag contains the name of the security level to
-be used (*id*) and a short description text (*desc*). The *<smeq>* (smaller or equals) tags referr to the 
-*id's* that are being used in the *id* attributes of the *<level>* tags. The attribute *lhs* stands for left hand side (the left side of the smaller or equals operation) wheras *lhs* is the left hand side. The partial order relation
-based on the configuration flow is highlighted in the lattice figure. 
+be used (*id*) and a short description text (*desc*). The *<smeq>* (smaller or equals) tags refer to the 
+*id's* that are being used in the *id* attributes of the *<level>* tags. The attribute *lhs* stands for left hand side (the left side of the smaller or equals operation) whereas *lhs* is the left hand side. The partial order relation based on the configuration flow is highlighted in the lattice figure. 
 
 ``` xml
 <!-- lattice xml -->
@@ -135,7 +134,7 @@ based on the configuration flow is highlighted in the lattice figure.
 
 The code listing above shows a sample configuration file that contains the bytecode signature
 for a single source. The top element for all configuration files (for sinks, sources and declassifiers) is 
-the *<nodeset>* tag. This tag can tontain multiple *<category>* tags. Sources, sinks and declassifiers
+the *<nodeset>* tag. This tag can contain multiple *<category>* tags. Sources, sinks and declassifiers
 are categorized which has to advantages: 
 
 - We can just consider sources/sinks and declassifiers that belong to the same class. Thus, we
@@ -147,19 +146,19 @@ and declassifiers of his interest.
 The category attribute *name* and *abbreviation* can be freely defined. However, it is important to note that
 *abbreviation* is used from JoanAudit to match given signatures with each other. The *<category>* tag can
 have multiple *<node>* child tags that contain the java bytecode signature (*name*) and the label that
-is assigned to a specific part ot the same signtature (*parlabel*). The parlabel should match the following production rule: *(return|all|[0-9])(security-level)* and have the following meansings:
+is assigned to a specific part of the same signature (*parlabel*). The *parlabel* attribute should match the following production rule: *(return|all|[0-9])(security-level)* and have the following meaning:
 
-* return: Return node of the function is labelled.
-* all: The whole function entry is labelled.
-* [0-9]: Actual parameter with the given number is labelled (first actual parameter has index 0).
+* return: Return node of the function is labeled.
+* all: The whole function entry is labeled.
+* [0-9]: Actual parameter with the given number is labeled (first actual parameter has index 0).
 * security-level : The security label that is being used for the selected part. The configuration of this
   part is dependent on the lattice configuration where security levels can be freely defined in the
-  *id* attribute o the *<level>* tag. In our diamond lattice example, security-level could be oneof LL, HH, LH or HL.
+  *id* attribute o the *<level>* tag. In our diamond lattice example, security-level could be one of LL, HH, LH or HL.
 
-In the example above the return value of *getParameter()* is supossed to be labelled with the *LL*.
+In the example above the return value of *getParameter()* is supposed to be labeled with the *LL*.
 
 The configuration for sinks listed below looks exactly the same as compared to the
-configuration fo sources, the only difference is the value of the *id*
+configuration of sources, the only difference is the value of the *id*
 which is *sinks* instead of *sources*. In the example below, we label the whole call entry
 of *XPath.evaluate()* with the security label HH.
 
@@ -181,12 +180,10 @@ Besides sources and sinks, there is also the declassifier configuration listed b
 	parlabels="0(LL>LH)"/>
 </category>
 ```
-By and large, the declassifier configuration is the same as compared to sources and sinks with two exceptions: The *id* tag must have the value *declassifiers*, and the structure of parlabels has to match the production rule
-*(return|all|[0-9]\*)(security-level0 > secuirty-level1)* whereas the first securitylevel is required and the second 
-security-level the provided security level. The required security level imposes the restriction on arriving information to have a security level smaller or equals than *securityLevel0* whereas *securityLevel1* is the 
-security-level to which the arriving information should be declassified to. Declassificatoin only makes sense if 
+By and large, the declassifier configuration is the same as compared to sources and sinks with two exceptions: The *id* tag must have the value *declassifiers*, and the structure of the attribute *parlabels* has to match the production rule *(return|all|[0-9]\*)(security-level0 > secuirty-level1)* whereas *securitylevel0* is the required and *security-level1* is the provided security level. The required security level imposes the restriction on arriving information to have a security level smaller or equals than *securityLevel0* whereas *securityLevel1* is the 
+security-level to which the arriving information should be declassified to. Declassification only makes sense if 
 *security-level1* is smaller or equals than *security-level0*. In our example above, we declassify the information
-that passes through the first parameter of *encodeForXPath()* from *LL* (nonconfidential and untrusted) to
+that passes through the first parameter of *encodeForXPath()* from *LL* (non-confidential and untrusted) to
 *LH* (confidential and untrusted). In other words, we are lowering the cautiousness of data that passes through the
 *encodeForXPath()* because it prevents malicious users of launching XPath attacks. *LH* data can be used more freely than *LL* data.
 
@@ -227,7 +224,7 @@ that inherit or implement from other classes, abstract classes and/or interfaces
 
 The categorization of sources, sinks and declassifiers helps to reduce the amount of potentially vulnerable paths that might be reported by JoanAudit and, hence, it reduces the manual effort for security auditors. 
 
-The first reason for using categories is that some declassfiers and sinks are not related 
+The first reason for using categories is that some declassifiers and sinks are not related 
 while others are. For example, the sanitization function *encodeForXPath()* sanitizes strings that can be used
 safely as parameter of *XPath.evaluate()*. But a flow of a string that contains the result of *encodeForXpath()* 
 to an SQL sink like *executeQuery()* cannot be considered as safe.
