@@ -1,12 +1,12 @@
 # JoanAudit 
 
-[Overview](#Overview)
+[Overview](#overview)
 
-[Directory Structure](#Directory Structure)
+[Directory Structure](#directory-structure)
 
 [Capabilities of JoanAudit](#capabilities-of-joanaudit)
 
-[Configuration](#Configuration)
+[Configuration](#configuration)
 
 [References](#references)
 
@@ -77,15 +77,14 @@ following, we are assuming
 	
 	<xi:include href="entrypoints.xml" />
 	
-	<xi:include href="categories.xml"/>
+	<xi:include href="classes.xml"/>
 
 </configuration>
 ```
 
 As one can see, the main configuration file includes configurations for source, sink and declassfier signatures, a configuration
 part for the lattice, exclusion rules, i.e. a set of Java packages or classes that can be dropped during the SDG construction. Moreover,
-the configuration includes a set of entrypoints, i.e. the starting points for SDG construction. The file *classes.xml* contains
-categories of sources, sinks, and declassifiers. If sources, sinks and declassifiers are connected by a path but do not belong
+the configuration includes a set of entrypoints, i.e. the starting points for SDG construction. The file *classes.xml* contains categories of sources, sinks, and declassifiers. If sources, sinks and declassifiers are connected by a path but do not belong
 to the same category, the are filtered out. The following subsections explains the different parts of the configuration in
 more detail.
 
@@ -148,7 +147,7 @@ and declassifiers of his interest.
 The category attribute *name* and *abbreviation* can be freely defined. However, it is important to note that
 *abbreviation* is used from JoanAudit to match given signatures with each other. The *<category>* tag can
 have multiple *<node>* child tags that contain the java bytecode signature (*name*) and the label that
-is assigned to a specific part ot the same signtature (*parlabel*). The parlabel should match the following production rule: *(return|all|[0-9]\*)(security-level)* and have the following meansings:
+is assigned to a specific part ot the same signtature (*parlabel*). The parlabel should match the following production rule: *(return|all|[0-9])(security-level)* and have the following meansings:
 
 * return: Return node of the function is labelled.
 * all: The whole function entry is labelled.
@@ -162,12 +161,12 @@ In the example above the return value of *getParameter()* is supossed to be labe
 The configuration for sinks listed below looks exactly the same as compared to the
 configuration fo sources, the only difference is the value of the *id*
 which is *sinks* instead of *sources*. In the example below, we label the whole call entry
-of *executeQuery()* with the security label HH.
+of *XPath.evaluate()* with the security label HH.
 
 ``` xml
 <!-- sinks.xml -->
 <nodeset id="sinks" xmlns="http://wwwen.uni.lu/snt">
-	<node name="java.sql.PreparedStatement.executeQuery()Ljava/sql/ResultSet;"
+	<node name="javax.xml.xpath.XPath.evaluate(Ljava/lang/String,Ljava/lang/Object;)Ljava/lang/String;"
 	parlabels="all(HH)"/>
 </category>
 ```
@@ -190,6 +189,64 @@ security-level to which the arriving information should be declassified to. Decl
 that passes through the first parameter of *encodeForXPath()* from *LL* (nonconfidential and untrusted) to
 *LH* (confidential and untrusted). In other words, we are lowering the cautiousness of data that passes through the
 *encodeForXPath()* because it prevents malicious users of launching XPath attacks. *LH* data can be used more freely than *LL* data.
+
+## Exclusions
+
+Exclusion rules are useful for improving scalability by reducing the SDG construction time. The following code snippet
+illustrates a sample configuration for excluding three packages from the SDG build process. You can also
+exclude single classes. In the example below, two packages and one class are filtered out.
+
+``` xml
+<exclusions xmlns="http://wwwen.uni.lu/snt">
+	<exclusion pattern="java/awt/.*"/>
+	<exclusion pattern="javax/swing/.*"/>
+	<exclusion pattern="org/eclipse/jetty/util/StringMap.*"/>
+</exclusions>
+```
+
+## Entrypoints
+
+Entrypoints are starting points for the SDG generation. JoanAudit analyzes the bytecode and searches for possible entrypoints. The following code snippet configures 4 possible entrypoints, namely *doPost()*, *doGet()*, *service()*
+and main, whereas the former 3 share the same prefix given in the *name* attribute of the *<entrypoint>* tag. JoanAudit searches for entrypoint with matching signatures and for implementations of the same function for classes
+that inherit or implement from other classes, abstract classes and/or interfaces.
+
+``` xml
+<entrypoints  xmlns="http://wwwen.uni.lu/snt">
+	<entrypoint class="javax.servlet.http.HttpServlet">
+		<function name="doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V"/>
+		<function name="doGet(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V"/>
+		<function name="service(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V"/>
+	</entrypoint>
+	<entrypoint>
+		<function name="main([Ljava/lang/String;)V"/>
+	</entrypoint>
+</entrypoints>
+```
+
+## Classes/Categories
+
+The categorization of sources, sinks and declassifiers helps to reduce the amount of potentially vulnerable paths that might be reported by JoanAudit and, hence, it reduces the manual effort for security auditors. 
+
+The first reason for using categories is that some declassfiers and sinks are not related 
+while others are. For example, the sanitization function *encodeForXPath()* sanitizes strings that can be used
+safely as parameter of *XPath.evaluate()*. But a flow of a string that contains the result of *encodeForXpath()* 
+to an SQL sink like *executeQuery()* cannot be considered as safe.
+
+The second reason for using categories is to allow security auditors to profile the application under test. If you have a rich set of sources, sinks and declassifiers, auditors do not want to create a new configuration for each
+application. They can use categories instead, to focus their auditing task just on particular sources, sinks and
+can leave out all functions that are known to be secure. The configuration example below means that just 
+sources that belong to the category *src_pt* (as configured in *sources.xml*), declassifiers that belong
+to the category *dcl_xi* (as configured in *declassifiers.xml*), and sinks that belong to the category *snk_xi*
+should be matched.
+
+``` xml
+<class desc="xpath injection">
+	<elem name="src_pt"/>
+	<elem name="dcl_xi"/>
+	<elem name="snk_xi"/>
+</class>
+```
+
 
 
 # References
