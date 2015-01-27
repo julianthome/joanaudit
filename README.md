@@ -101,7 +101,8 @@ be used (*id*) and a short description text (*desc*). The *<smeq>* (smaller or e
 *id's* that are being used in the *id* attributes of the *<level>* tags. The attribute *lhs* stands for left hand side (the left side of the smaller or equals operation) wheras *lhs* is the left hand side. The partial order relation
 based on the configuration flow is highlighted in the lattice figure. 
 
-``` lattice xml
+``` xml
+<!-- lattice xml -->
 <lattice xmlns="http://wwwen.uni.lu/snt">
 	<levels>
 		<level id="LH" desc="non-confidential and trusted"/>
