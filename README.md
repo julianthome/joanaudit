@@ -255,7 +255,7 @@ The following table explains the meaning of the different options that can be co
 
 
 | biofuzz-tk (short/ long option)        | meaning | 
-| :-------------------------- | --------------------------:| 
+| :---------------------------------------------------- | :--------------------------| 
 |-arch,--archivepath <arch>   | Path to the jar file to test for security vulnerabilites - note that this does not work for ear/war (extract them first and use the dir option) | 
 | -cfg,--config <cfg>        |  Path to the JoanAudit configuration file in XML format. The basename has to be config.xml. You can work with xincludes.|
 | -chopout,--chop-out-file <chopoutputfile> |  serialize the chop to a file |
