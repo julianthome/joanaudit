@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="213" height="201" viewBox="0, 0, 213, 201">
+  <g id="Layer_1">
+    <g>
+      <path d="M113.242,31.354 L181.792,101.388 L111.758,169.939 L43.208,99.904 L113.242,31.354 z" fill="#F5F5F5"/>
+      <path d="M113.242,31.354 L181.792,101.388 L111.758,169.939 L43.208,99.904 L113.242,31.354 z" fill-opacity="0" stroke="#000000" stroke-width="2"/>
+    </g>
+    <text transform="matrix(1, 0, 0, 1, 112, 16.854)">
+      <tspan x="-15.34" y="8" font-family="Arial-ItalicMT" font-size="24" fill="#000000">HL</tspan>
+    </text>
+    <text transform="matrix(1, 0, 0, 1, 112, 184.146)">
+      <tspan x="-15.34" y="8" font-family="Arial-ItalicMT" font-size="24" fill="#000000">LH</tspan>
+    </text>
+    <text transform="matrix(1, 0, 0, 1, 21.868, 100.146)">
+      <tspan x="-17.332" y="8" font-family="Arial-ItalicMT" font-size="24" fill="#000000">HH</tspan>
+    </text>
+    <text transform="matrix(1, 0, 0, 1, 196.632, 100.146)">
+      <tspan x="-13.348" y="8" font-family="Arial-ItalicMT" font-size="24" fill="#000000">LL</tspan>
+    </text>
+    <g>
+      <path d="M56.993,58.413 L69.423,46.033" fill-opacity="0" stroke="#000000" stroke-width="2"/>
+      <path d="M57.033,57.012 L66.857,66.9" fill-opacity="0" stroke="#000000" stroke-width="2"/>
+      <path d="M65.443,66.897 L77.873,54.517" fill-opacity="0" stroke="#000000" stroke-width="2"/>
+      <path d="M67.43,68.737 L79.86,56.357" fill-opacity="0" stroke="#000000" stroke-width="2"/>
+    </g>
+    <g>
+      <path d="M167.551,58.413 L155.121,46.033" fill-opacity="0" stroke="#000000" stroke-width="2"/>
+      <path d="M167.511,57.012 L157.687,66.9" fill-opacity="0" stroke="#000000" stroke-width="2"/>
+      <path d="M159.101,66.897 L146.671,54.517" fill-opacity="0" stroke="#000000" stroke-width="2"/>
+      <path d="M157.114,68.737 L144.684,56.357" fill-opacity="0" stroke="#000000" stroke-width="2"/>
+    </g>
+    <g>
+      <path d="M69.455,154.453 L57.075,142.023" fill-opacity="0" stroke="#000000" stroke-width="2"/>
+      <path d="M68.054,154.413 L77.942,144.588" fill-opacity="0" stroke="#000000" stroke-width="2"/>
+      <path d="M77.939,146.003 L65.559,133.573" fill-opacity="0" stroke="#000000" stroke-width="2"/>
+      <path d="M79.779,144.015 L67.399,131.585" fill-opacity="0" stroke="#000000" stroke-width="2"/>
+    </g>
+    <g>
+      <path d="M155.089,154.453 L167.469,142.023" fill-opacity="0" stroke="#000000" stroke-width="2"/>
+      <path d="M156.49,154.413 L146.602,144.588" fill-opacity="0" stroke="#000000" stroke-width="2"/>
+      <path d="M146.605,146.003 L158.985,133.573" fill-opacity="0" stroke="#000000" stroke-width="2"/>
+      <path d="M144.765,144.015 L157.145,131.585" fill-opacity="0" stroke="#000000" stroke-width="2"/>
+    </g>
+  </g>
+</svg>
