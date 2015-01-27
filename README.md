@@ -256,31 +256,17 @@ The following table explains the meaning of the different options that can be co
 
 | biofuzz-tk        | meaning | 
 | ------------- |:-------------:| 
-|-arch,--archivepath <arch>   |               Path to the jar file to test 
-                                             for security vulnerabilites -
-                                             note that this does not work
-                                             for ear/war (extract them
-                                             first and use the dir option)|
-| -cfg,--config <cfg>        |                 Path to the JoanAudit
-                                             configuration file in XML
-                                             format. The basename has to
-                                             be config.xml. You can work
-                                             with xincludes.|
+|-arch,--archivepath <arch>   | Path to the jar file to test for security vulnerabilites - note that this does not work for ear/war (extract them first and use the dir option) | 
+| -cfg,--config <cfg>        |  Path to the JoanAudit configuration file in XML format. The basename has to be config.xml. You can work with xincludes.|
 | -chopout,--chop-out-file <chopoutputfile> |  serialize the chop to a file |
-| -cp,--classpath <cp>  |                      Classpath - multiple entries |
-                                             should be separated by ':'
-| -dir,--directorypath <dir>   |               path to the directory |
-                                             containing the java sources
-| -ept,--entrypoint <entrypoint>  |            The entrypoint to start the
-                                             analysis |
+| -cp,--classpath <cp>  |                      Classpath - multiple entries should be separated by ':' |
+| -dir,--directorypath <dir>   |               path to the directory containing the java sources |
+| -ept,--entrypoint <entrypoint>  |            The entrypoint to start the analysis |
 | -h                           |               print this message |
 | -in,--sdg-in-file <inputfile>  |             read the SDG file |
-| -jbd,--joanabasedir <jbd>     |              Joana Basedir - needed to
-                                             load Java stubs. |
-| -lept,--list_entrypoints    |                List all possible entrypoints
-                                             (config.xml is used for
-                                             filtering) |
-| -sdgout,--sdg-out-file <outputfile>  |       serialize the SDG to a file
+| -jbd,--joanabasedir <jbd>     |              Joana Basedir - needed to load Java stubs. |
+| -lept,--list_entrypoints    |                List all possible entrypoints |
+| -sdgout,--sdg-out-file <outputfile>  |       serialize the SDG to a file |
 | -src,--check_sources      |                  Check all java source files |
 
 
