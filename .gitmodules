@@ -1,0 +1,3 @@
+[submodule "modules/joana"]
+	path = modules/joana
+	url = https://github.com/jgf/joana.git
