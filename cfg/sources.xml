@@ -1,0 +1,108 @@
+<nodeset id="sources" xmlns="http://wwwen.uni.lu/snt">
+	<category name="parameter tampering" abbreviation="src_pt">
+		<node
+				name="javax.servlet.ServletRequest.getParameter(Ljava/lang/String;)Ljava/lang/String;"
+				parlabels="return(LL)"/>
+		<node
+				name="javax.servlet.ServletRequest.getParameterValues(Ljava/util/String;)LLjava/lang/String;"
+				parlabels="return(LL)"/>
+		<node
+				name="javax.servlet.ServletRequest.getParameterMap()Ljava/util/Map;"
+				parlabels="return(LL)"/>
+		<node
+				name="javax.servlet.ServletRequest.getParameterNames()Ljava/util/Enumeration;"
+				parlabels="return(LL)"/>
+		<node
+				name="javax.servlet.http.HttpServletRequest.getRequestedSessionId()Ljava/lang/String;"
+				parlabels="return(LL)"/>
+		<node
+				name="javax.servlet.http.HttpServletRequest.getQueryString()Ljava/lang/String;"
+				parlabels="return(LL)"/>
+		<node
+				name="javax.servlet.http.HttpServletRequest.getRemoteUser()Ljava/lang/String;"
+				parlabels="return(LL)"/>
+		<node
+				name="javax.servlet.http.HttpServletRequest.getCookies()LLjavax.servlet.http.Cookie;"
+				parlabels="return(LL)" />
+		<node
+				name="javax.servlet.http.HttpServletRequest.getParameter(Ljava/lang/String;)Ljava/lang/String;"
+				parlabels="return(LL)"/>
+		<node
+				name="javax.servlet.ServletRequestWrapper.getParameter(Ljava/lang/String;)Ljava/lang/String;"
+				parlabels="return(LL)"/>
+		<node name="org.apache.http.client.methods.HttpPost.&lt;init&gt;(Ljava/lang/String;)V" parlabels="all(LL)"/>
+		<node name="org.apache.http.client.methods.HttpGet.&lt;init&gt;(Ljava/lang/String;)V" parlabels="all(LL)"/>
+	</category>
+
+	<category name="header manipulation" abbreviation="src_hm">
+		<node name="javax.servlet.ServletRequest.getScheme()Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+		<node name="javax.servlet.ServletRequest.getProtocol()Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+		<node
+				name="javax.servlet.ServletRequest.getContentType()Ljava/lang/String;"
+				parlabels="return(LL)"/>
+		<node
+				name="javax.servlet.ServletRequest.getServerName()Ljava/lang/String;"
+				parlabels="return(LL)"/>
+		<node
+				name="javax.servlet.ServletRequest.getRemoteAddr()Ljava/lang/String;"
+				parlabels="return(LL)"/>
+		<node
+				name="javax.servlet.ServletRequest.getRemoteHost()Ljava/lang/String;"
+				parlabels="return(LL)"/>
+		<node name="javax.servlet.ServletRequest.getRealPath()Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+		<node
+				name="javax.servlet.ServletRequest.getLocalName()Ljava/lang/String;"
+				parlabels="return(LL)"/>
+		<node
+				name="javax.servlet.ServletRequest.getLocalAddr()Ljava/lang/String;"
+				parlabels="return(LL)"/>
+		<node name="javax.servlet.ServletRequest.getAuthType()Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+		<node
+				name="javax.servlet.ServletRequest.getRequestDispatcher(Ljava/lang/String;)Ljavax/servlet/RequestDispatcher;"
+				parlabels="return(LL)"/>
+		<node
+				name="javax.servlet.http.HttpServletRequest.getMethod()Ljava/lang/String;"
+				parlabels="return(LL)"/>
+		<node
+				name="javax.servlet.http.HttpServletRequest.getContentType()Ljava/lang/String;"
+				parlabels="return(LL)"/>
+		<node name="javax.servlet.http.HttpServletRequest.getContentLength()I"
+			  parlabels="return(LL)"/>
+		<node
+				name="javax.servlet.http.HttpServletRequest.getRemoteUser()Ljava/lang/String;"
+				parlabels="return(LL)"/>
+		<node
+				name="javax.servlet.http.HttpServletRequest.getQueryString()Ljava/lang/String;"
+				parlabels="return(LL)" />
+	</category>
+
+	<category name="url tampering" abbreviation="src_ut">
+		<node
+				name="javax.servlet.http.HttpServletRequest.getScheme()Ljava/lang/String;"
+				parlabels="return(LL)"/>
+	</category>
+
+	<category name="cookie poisoning" abbreviation="src_cp">
+		<node name="javax.servlet.http.Cookie.getValue()Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+		<node name="javax.servlet.http.Cookie.getPath()Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+		<node name="javax.servlet.http.Cookie.getComment()Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+		<node name="javax.servlet.http.Cookie.getDomain()Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+		<node name="javax.servlet.http.Cookie.getName()Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+	</category>
+
+	<category name="non deterministic" abbreviation="src_nd">
+		<node name="java.util.Calendar.getTime()Ljava/util/Date;"
+			  parlabels="return(HL)"/>
+	</category>
+
+
+</nodeset>

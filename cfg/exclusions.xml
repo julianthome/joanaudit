@@ -1,0 +1,15 @@
+<exclusions xmlns="http://wwwen.uni.lu/snt">
+	<exclusion pattern="java/awt/.*"/>
+	<exclusion pattern="javax/swing/.*"/>
+	<exclusion pattern="java/nio/.*"/>
+	<exclusion pattern="java/io/.*"/>
+	<exclusion pattern="java/net/.*"/>
+	<exclusion pattern="java/lang/AbstractStringBuilder.*"/>
+	<exclusion pattern="java/lang/StringBuffer.*"/>
+	<exclusion pattern="java/lang/AssertionError.*"/>
+	<exclusion pattern="java/lang/CharacterData.*"/>
+	<exclusion pattern="sun/awt/.*"/>
+	<exclusion pattern="sun/swing/.*"/>
+	<exclusion pattern="com/sun/.*"/>
+	<exclusion pattern="sun/.*"/>
+</exclusions>

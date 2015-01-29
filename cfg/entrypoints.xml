@@ -1,0 +1,10 @@
+<entrypoints  xmlns="http://wwwen.uni.lu/snt">
+	<entrypoint class="javax.servlet.http.HttpServlet">
+		<function name="doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V"/>
+		<function name="doGet(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V"/>
+		<function name="service(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V"/>
+	</entrypoint>
+	<entrypoint class="">
+		<function name="main([Ljava/lang/String;)V"/>
+	</entrypoint>
+</entrypoints>
