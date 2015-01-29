@@ -277,16 +277,16 @@ The Joana sources are available in the *./modules/joana* directory then. Let us 
 
 1. Listing possible entrypoints
 
-Every function can be defined as entrypint. Per default, JoanAudit searches for entrypoints that are configured in the *entrypoints.xml* section of the configuration file *config.xml*.
+.. Every function can be defined as entrypint. Per default, JoanAudit searches for entrypoints that are configured in the *entrypoints.xml* section of the configuration file *config.xml*.
 
-``` bash
+.. ``` bash
 java -jar JoanAudit.jar -jbd ../modules/joana/ -arch foo.jar -lept -cfg config.xml -cp "lib.jar" 
 ```
-The *jbd* option points the the location of the joana directory. The option *arch* is devoted to the JAR archive of the program to be analyzed. The *lept* options is usef for printing out all entrypoints that are present in the application. The generic entrypoints that are present in the configuraiton file are used as filters. The *cp*
+.. The *jbd* option points the the location of the joana directory. The option *arch* is devoted to the JAR archive of the program to be analyzed. The *lept* options is usef for printing out all entrypoints that are present in the application. The generic entrypoints that are present in the configuraiton file are used as filters. The *cp*
 option is used for defining libraries that have to be or that should be included for constructing the SDG. In case
 of multiple libraries, one can separate them using *':'*. A possible output from JoanAudit might look as follows:
 
-``` bash
+.. ``` bash
 ept: simple.Simple.doGet(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
 ept: simple.Simple.doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
 ```
