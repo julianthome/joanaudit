@@ -14,7 +14,7 @@
 
 # Overview
 
-JoanAudit is a security-slicing tool based on the [Joana](http://pp.ipd.kit.edu/projects/joana/) framework which may be downloaded from [here](https://github.com/jgf/joana).
+JoanAudit is a program slicing tool for automatic extraction of security slices from Java Web programs. Security slices are concise and minimal pieces of code that are essential for auditing XML, XPath, and SQL injection--common and serious security issues for Web applications and Web services. It is based on the [Joana](http://pp.ipd.kit.edu/projects/joana/) framework which may be downloaded from [here](https://github.com/jgf/joana).
 
 <img src="https://github.com/julianthome/joanaudit/blob/master/img/tool.png" alt="Overview" width="400px" align="middle">
 
@@ -75,7 +75,7 @@ to the same category, they are filtered out. The following subsections explain t
 The security lattice is used for information flow analysis. More specifically, it is used to augment 
 parts of the SDG with security label for the purpose of performing IFC on potentially sensitive paths (from sources through declassifiers to sinks). We are using IFC to filter out those paths that can be considered as secure based on the IFC analysis.
 
-A lattice is a partial ordered set of security levels. The configuration file *lattice.xml* illustrates the configuration of a simple diamond lattice as depicted in the figure below. The root tag *<lattice>* contains
+A lattice is a partial ordered set of security levels. The configuration file *lattice.xml* illustrates the configuration of a [diamond lattice](http://www.cs.cornell.edu/andru/papers/robdecl-jcs.pdf) as depicted in the figure below. The root tag *<lattice>* contains
 *<levels>* subtags that define the different security levels of the lattice, whereas the
 *<relations>* tag contains the relations between them. Each *<level>* tag contains the name of the security level to
 be used (*id*) and a short description text (*desc*). The *<smeq>* (smaller or equals) tags refer to the 
@@ -255,7 +255,6 @@ The following table explains the meaning of the different options that can be co
 | :---------------------------------------------------- | :--------------------------| 
 |-arch,--archivepath <arch>   | Path to the jar file to test for security vulnerabilites - note that this does not work for ear/war (extract them first and use the dir option) | 
 | -cfg,--config <cfg>        |  Path to the JoanAudit configuration file in XML format. The basename has to be config.xml. You can work with xincludes.|
-| -chopout,--chop-out-file <chopoutputfile> |  serialize the chop to a file |
 | -cp,--classpath <cp>  |                      Classpath - multiple entries should be separated by ':' |
 | -dir,--directorypath <dir>   |               path to the directory containing the java sources |
 | -ept,--entrypoint <entrypoint>  |            The entrypoint to start the analysis |
@@ -263,13 +262,64 @@ The following table explains the meaning of the different options that can be co
 | -in,--sdg-in-file <inputfile>  |             read the SDG file |
 | -jbd,--joanabasedir <jbd>     |              Joana Basedir - needed to load Java stubs. |
 | -lept,--list_entrypoints    |                List all possible entrypoints |
-| -sdgout,--sdg-out-file <outputfile>  |       serialize the SDG to a file |
+| -sdgout,--sdg-out-file <outputfile>  |       Serialize the SDG to a file |
 | -src,--check_sources      |                  Check all java source files |
+| -pch,--print-class-hierarchy                Dump the class hierarchy|
+
+Joana provides stubs for Java. Stubs are useful for reducing the SDG construction time. For getting the stubs please launch the following commands in the git repository.
+
+``` bash
+git submodule init
+git submodule update
+```
+
+The Joana sources are available in the *./modules/joana* directory then. Let us assume, one would like to analyze the JAR archive *foo.jar*, the following steps can be perfomed:
+
+1. Listing possible entrypoints
+
+Every function can be defined as entrypint. Per default, JoanAudit searches for entrypoints that are configured in the *entrypoints.xml* section of the configuration file *config.xml*.
+
+``` bash
+java -jar JoanAudit.jar -jbd ../modules/joana/ -arch foo.jar -lept -cfg config.xml -cp "lib.jar" 
+```
+The *jbd* option points the the location of the joana directory. The option *arch* is devoted to the JAR archive of the program to be analyzed. The *lept* options is usef for printing out all entrypoints that are present in the application. The generic entrypoints that are present in the configuraiton file are used as filters. The *cp*
+option is used for defining libraries that have to be or that should be included for constructing the SDG. In case
+of multiple libraries, one can separate them using *':'*. A possible output from JoanAudit might look as follows:
+
+``` bash
+ept: simple.Simple.doGet(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+ept: simple.Simple.doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
+```
 
 
+2. Printing vulnerable paths
+
+With the entrypoints that were returned after launching the command above, we can analyze the program with the following command:
+
+``` bash
+java -jar JoanAudit.jar -jbd ../modules/joana/ -arch foo.jar -ept "simple.Simple.doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" -cfg config.xml -cp "lib.jar"
+```
+
+JoanAudit might produce the following output:
+
+``` bash
+Path :  [simple/Simple.java] 100 -> 106 -> 106 -> 106 -> 107 -> 181 -> 185 -> 191 -> 200 -> 201 -> 201 -> 206
+Conditions :  106
+CtrlDeps :  [simple/Simple.java] 106 -(CD)-> 107, 181 -(CD)-> 185, 185 -(CD)-> 191, 191 -(CD)-> 200, 200 -(CD)-> 201
+Calls :  107,181,185,191,200,201
+```
+
+JoanAudit reports the complete Path, Condition, Control Dependencies (CtrlDeps) and Calls in sequences of line numbers. If there is a scope changes (calls that lead the execution to another class), the target class is highlighted 
+in brackets *[]*.
+
+
+# Notes
+
+JoanAudit is a "proof-of-concept" research prototype. If you find bugs or if you have suggestions how to improve it, please send an e-mail to julian.thome@uni.lu.
 
 # References
 
 * [Joana Website](http://pp.ipd.kit.edu/projects/joana/)
 * [Joana Source Code](https://github.com/jgf/joana)
+* [Declassification/Lattice](http://www.cs.cornell.edu/andru/papers/robdecl-jcs.pdf)
 
