@@ -8,6 +8,8 @@
 
 [Configuration](#configuration)
 
+[Case Studies](#case-studies)
+
 [Notes](#notes)
 
 [References](#references)
@@ -40,7 +42,6 @@ The directories of this repository and their meaning are as follows:
 
 * bin/: The JoanAudit binary
 * cfg/: A sample configuration file
-* cstudies/: The web applications that we used in our evaluation
 * modules/ : The Joana submodule
 
 # Configuration
@@ -315,6 +316,15 @@ Calls :  107,181,185,191,200,201
 
 JoanAudit reports the complete Path, Condition, Control Dependencies (CtrlDeps) and Calls in sequences of line numbers. If there is a scope changes (calls that lead the execution to another class), the target class is highlighted in brackets *[]*.
 
+# Case Studies
+
+In our experiments, we evaluated JoanAudit on the following test subjects.
+
+* [PubSubHubbub](https://code.google.com/p/pubsubhubbub/)
+* [WebGoat 5.2](https://www.owasp.org/index.php/Category:OWASP_WebGoat_Project)
+* [Apache Roller 5.1.1](http://roller.apache.org/)
+* [Pebble 2.6.4](http://pebble.sourceforge.net/)
+* [Regain 2.1.0](http://regain.sourceforge.net/download.php?lang=de)
 
 # Notes
 
