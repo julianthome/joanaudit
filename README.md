@@ -4,13 +4,14 @@
 
 [Directory Structure](#directory-structure)
 
-[Capabilities of JoanAudit](#capabilities-of-joanaudit)
+[Usage](#usage)
 
 [Configuration](#configuration)
 
+[Notes](#notes)
+
 [References](#references)
 
-[Acknowledgements](#acknowledgements)
 
 # Overview
 
