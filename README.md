@@ -264,7 +264,7 @@ The following table explains the meaning of the different options that can be co
 | -lept,--list_entrypoints    |                List all possible entrypoints |
 | -sdgout,--sdg-out-file <outputfile>  |       Serialize the SDG to a file |
 | -src,--check_sources      |                  Check all java source files |
-| -pch,--print-class-hierarchy                Dump the class hierarchy|
+| -pch,--print-class-hierarchy  |              Dump the class hierarchy|
 
 Joana provides stubs for Java. Stubs are useful for reducing the SDG construction time. For getting the stubs please launch the following commands in the git repository.
 
