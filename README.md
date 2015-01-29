@@ -275,33 +275,34 @@ git submodule update
 
 The Joana sources are available in the *./modules/joana* directory then. Let us assume, one would like to analyze the JAR archive *foo.jar*, the following steps can be perfomed:
 
-1. Listing possible entrypoints
+## Listing possible entrypoints
 
-..Every function can be defined as entrypint. Per default, JoanAudit searches for entrypoints that are configured in the *entrypoints.xml* section of the configuration file *config.xml*.
+Every function can be defined as entrypint. Per default, JoanAudit searches for entrypoints that are configured in the *entrypoints.xml* section of the configuration file *config.xml*.
 
-..``` bash
+``` bash
 java -jar JoanAudit.jar -jbd ../modules/joana/ -arch foo.jar -lept -cfg config.xml -cp "lib.jar" 
 ```
-..The *jbd* option points the the location of the joana directory. The option *arch* is devoted to the JAR archive of the program to be analyzed. The *lept* options is usef for printing out all entrypoints that are present in the application. The generic entrypoints that are present in the configuraiton file are used as filters. The *cp*
+
+The *jbd* option points the the location of the joana directory. The option *arch* is devoted to the JAR archive of the program to be analyzed. The *lept* options is usef for printing out all entrypoints that are present in the application. The generic entrypoints that are present in the configuraiton file are used as filters. The *cp*
 option is used for defining libraries that have to be or that should be included for constructing the SDG. In case
 of multiple libraries, one can separate them using *':'*. A possible output from JoanAudit might look as follows:
 
-..``` bash
+``` bash
 ept: simple.Simple.doGet(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
 ept: simple.Simple.doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
 ```
 
 
-2. Printing potentially vulnerable paths
+## Printing potentially vulnerable paths
 
-.. With the entrypoints that were returned after launching the command above, we can analyze the program 
-.. with the following command:
+With the entrypoints that were returned after launching the command above, we can analyze the program 
+with the following command:
 
 ``` bash
 java -jar JoanAudit.jar -jbd ../modules/joana/ -arch foo.jar -ept "simple.Simple.doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" -cfg config.xml -cp "lib.jar"
 ```
 
-..JoanAudit might produce the following output:
+JoanAudit might produce the following output:
 
 ``` bash
 Path :  [simple/Simple.java] 100 -> 106 -> 106 -> 106 -> 107 -> 181 -> 185 -> 191 -> 200 -> 201 -> 201 -> 206
@@ -310,7 +311,7 @@ CtrlDeps :  [simple/Simple.java] 106 -(CD)-> 107, 181 -(CD)-> 185, 185 -(CD)-> 1
 Calls :  107,181,185,191,200,201
 ```
 
-..JoanAudit reports the complete Path, Condition, Control Dependencies (CtrlDeps) and Calls in sequences of line numbers. If there is a scope changes (calls that lead the execution to another class), the target class is highlighted in brackets *[]*.
+JoanAudit reports the complete Path, Condition, Control Dependencies (CtrlDeps) and Calls in sequences of line numbers. If there is a scope changes (calls that lead the execution to another class), the target class is highlighted in brackets *[]*.
 
 
 # Notes
