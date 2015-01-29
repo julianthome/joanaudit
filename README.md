@@ -297,20 +297,20 @@ ept: simple.Simple.doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/
 .. With the entrypoints that were returned after launching the command above, we can analyze the program 
 .. with the following command:
 
-.. ``` bash
+``` bash
 java -jar JoanAudit.jar -jbd ../modules/joana/ -arch foo.jar -ept "simple.Simple.doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" -cfg config.xml -cp "lib.jar"
 ```
 
-.. JoanAudit might produce the following output:
+..JoanAudit might produce the following output:
 
-.. ``` bash
+``` bash
 Path :  [simple/Simple.java] 100 -> 106 -> 106 -> 106 -> 107 -> 181 -> 185 -> 191 -> 200 -> 201 -> 201 -> 206
 Conditions :  106
 CtrlDeps :  [simple/Simple.java] 106 -(CD)-> 107, 181 -(CD)-> 185, 185 -(CD)-> 191, 191 -(CD)-> 200, 200 -(CD)-> 201
 Calls :  107,181,185,191,200,201
 ```
 
-.. JoanAudit reports the complete Path, Condition, Control Dependencies (CtrlDeps) and Calls in sequences of line numbers. If there is a scope changes (calls that lead the execution to another class), the target class is highlighted in brackets *[]*.
+..JoanAudit reports the complete Path, Condition, Control Dependencies (CtrlDeps) and Calls in sequences of line numbers. If there is a scope changes (calls that lead the execution to another class), the target class is highlighted in brackets *[]*.
 
 
 # Notes
