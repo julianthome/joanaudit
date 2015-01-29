@@ -37,9 +37,10 @@ vulnerable paths of a given program.
 
 The directories of this repository and their meaning are as follows:
 
-* bin/: the JoanAudit binary
-* cfg/: a sample configuration file
-* cstudies/: the web applications that we used in our evaluation
+* bin/: The JoanAudit binary
+* cfg/: A sample configuration file
+* cstudies/: The web applications that we used in our evaluation
+* modules/ : The Joana submodule
 
 # Configuration
 
@@ -256,10 +257,10 @@ The following table explains the meaning of the different options that can be co
 |-arch,--archivepath <arch>   | Path to the jar file to test for security vulnerabilites - note that this does not work for ear/war (extract them first and use the dir option) | 
 | -cfg,--config <cfg>        |  Path to the JoanAudit configuration file in XML format. The basename has to be config.xml. You can work with xincludes.|
 | -cp,--classpath <cp>  |                      Classpath - multiple entries should be separated by ':' |
-| -dir,--directorypath <dir>   |               path to the directory containing the java sources |
+| -dir,--directorypath <dir>   |               Path to the directory containing the java sources |
 | -ept,--entrypoint <entrypoint>  |            The entrypoint to start the analysis |
-| -h                           |               print this message |
-| -in,--sdg-in-file <inputfile>  |             read the SDG file |
+| -h                           |               Print this message |
+| -in,--sdg-in-file <inputfile>  |             Read the SDG file |
 | -jbd,--joanabasedir <jbd>     |              Joana Basedir - needed to load Java stubs. |
 | -lept,--list_entrypoints    |                List all possible entrypoints |
 | -sdgout,--sdg-out-file <outputfile>  |       Serialize the SDG to a file |
