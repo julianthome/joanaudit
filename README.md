@@ -132,7 +132,7 @@ and declassifiers that are of interest to him.
 The category attribute *name* and *abbreviation* can be freely defined. However, it is important to note that
 *abbreviation* is used from JoanAudit to match given signatures with each other. The *<category>* tag can
 have multiple *<node>* child tags that contain the java bytecode signature (*name*) and the label that
-is assigned to a specific part of the same signature (*parlabel*). The *parlabel* attribute should match the following production rule: *(return|all|[0-9])(security-level)* and have the following meaning:
+is assigned to a specific part of the same signature (*parlabel*). The *parlabel* attribute should match the following production rule: *(return|all|[0-9]+)(security-level)* and have the following meaning:
 
 * return: Return node of the function is labeled.
 * all: The whole function entry is labeled.
@@ -166,7 +166,7 @@ Besides sources and sinks, there is also the declassifier configuration listed b
 	parlabels="0(LL>LH)"/>
 </category>
 ```
-By and large, the declassifier configuration is the same as compared to sources and sinks with two exceptions: the *id* tag must have the value *declassifiers*, and the structure of the attribute *parlabels* has to match the production rule *(return|all|[0-9]\*)(security-level0 > secuirty-level1)* whereas *securitylevel0* is the required and *security-level1* is the provided security level. The required security level imposes the restriction on arriving information to have a security level smaller then or equal to than *securityLevel0* whereas *securityLevel1* is the 
+By and large, the declassifier configuration is the same as compared to sources and sinks with two exceptions: the *id* tag must have the value *declassifiers*, and the structure of the attribute *parlabels* has to match the production rule *(return|all|[0-9]+)(security-level0 > secuirty-level1)* whereas *securitylevel0* is the required and *security-level1* is the provided security level. The required security level imposes the restriction on arriving information to have a security level smaller then or equal to than *securityLevel0* whereas *securityLevel1* is the 
 security-level to which the arriving information should be declassified to. Declassification only makes sense if 
 *security-level1* is smaller or equals than *security-level0*. In our example above, we declassify the information
 that passes through the first parameter of *encodeForXPath()* from *LL* (non-confidential and untrusted) to
