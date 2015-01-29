@@ -41,7 +41,9 @@ vulnerable paths of a given program.
 The directories of this repository and their meaning are as follows:
 
 * bin/: The JoanAudit binary
-* cfg/: A sample configuration file
+* cfg/: A sample configuration file. If you want to adjust JoanAudit to your needs, please add your own
+signatures. You can follow the examples present in the configuraiton files (*config.xml* is the
+main configuration file).
 * modules/ : The Joana submodule
 
 # Configuration
