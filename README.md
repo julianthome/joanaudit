@@ -52,6 +52,7 @@ main configuration file).
 The configuration parts consists of several parts. The following XML file illustrates the different sections.
 
 ``` xml
+<!-- config.xml -->
 <configuration xmlns:xi="http://www.w3.org/2001/XInclude"
 	xmlns="http://wwwen.uni.lu/snt" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
 	xs:schemaLocation="http://wwwen.uni.lu/snt config.xsd">
