@@ -318,9 +318,9 @@ JoanAudit reports the complete Path, Condition, Control Dependencies (CtrlDeps) 
 
 # Case Studies
 
-In our experiments, we evaluated JoanAudit on the following test subjects.
+In our experiments, we evaluated JoanAudit on the following test subjects:
 
-* [PubSubHubbub](https://code.google.com/p/pubsubhubbub/)
+* [PubSubHubbub 0.3](https://code.google.com/p/pubsubhubbub/)
 * [WebGoat 5.2](https://www.owasp.org/index.php/Category:OWASP_WebGoat_Project)
 * [Apache Roller 5.1.1](http://roller.apache.org/)
 * [Pebble 2.6.4](http://pebble.sourceforge.net/)
