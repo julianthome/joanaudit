@@ -316,7 +316,7 @@ CtrlDeps :  [simple/Simple.java] 106 -(CD)-> 107, 181 -(CD)-> 185, 185 -(CD)-> 1
 Calls :  107,181,185,191,200,201
 ```
 
-JoanAudit reports the complete Path, Condition, Control Dependencies (CtrlDeps) and Calls in sequences of line numbers. If there is a scope changes (calls that lead the execution to another class), the target class is highlighted in brackets *[]*.
+JoanAudit reports the complete Path, Condition, Control Dependencies (CtrlDeps) and Calls in sequences of line numbers. If there is a scope change (calls that lead the execution to another class), the target class is highlighted in brackets *[]*.
 
 # Case Studies
 
