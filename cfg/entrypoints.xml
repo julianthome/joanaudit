@@ -1,10 +1,34 @@
-<entrypoints  xmlns="http://wwwen.uni.lu/snt">
+<entrypoints>
 	<entrypoint class="javax.servlet.http.HttpServlet">
 		<function name="doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V"/>
 		<function name="doGet(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V"/>
 		<function name="service(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V"/>
 	</entrypoint>
+	<entrypoint class="org.owasp.webgoat.lessons.LessonAdapter">
+		<function name="createContent(Lorg/owasp/webgoat/session/WebSession;)Lorg/apache/ecs/Element;"/>
+	</entrypoint>
+	<entrypoint class="org.eclipse.jetty.server.handler.AbstractHandler">
+		<function name="org.eclipse.jetty.server.handler.AbstractHandler.handle(Ljava/lang/String;Lorg/eclipse/jetty/server/Request;Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V"/>
+	</entrypoint>
 	<entrypoint class="">
 		<function name="main([Ljava/lang/String;)V"/>
+	</entrypoint>
+	<entrypoint class="org.apache.stratos.cli.GenericRestClient">
+		<function name="doPost(Lorg/apache/http/impl/client/DefaultHttpClient;Ljava/lang/String;Ljava/lang/String;)Lorg/apache/http/HttpResponse;"/>
+		<function name="doGet(Lorg/apache/http/impl/client/DefaultHttpClient;Ljava/lang/String;Ljava/lang/String;)Lorg/apache/http/HttpResponse;"/>
+		<function name="doDelete(Lorg/apache/http/impl/client/DefaultHttpClient;Ljava/lang/String;Ljava/lang/String;)Lorg/apache/http/HttpResponse;"/>
+		<function name="doPut(Lorg/apache/http/impl/client/DefaultHttpClient;Ljava/lang/String;Ljava/lang/String;)Lorg/apache/http/HttpResponse;"/>
+	</entrypoint>
+	<entrypoint class="PubSubHubbub.Subscriber">
+		<function name="subscribe(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)I"/>
+		<function name="unsubscribe(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)I"/>
+	</entrypoint>
+	<entrypoint class="Published.Publisher">
+		<function name="execute(Ljava/lang/String;Ljava/lang/String;)I"/>
+	</entrypoint>
+	<entrypoint class="Published.Discovery">
+		<function name="getContents(Ljava/lang/String;Ljava/lang/String;)I"/>
+		<function name="getHub(Ljava/lang/String;)Ljava/lang/String;"/>
+		<function name="hasHub(Lorg/w3c/dom/Document;)Ljava/lang/String;"/>
 	</entrypoint>
 </entrypoints>

@@ -1,27 +1,30 @@
-<nodeset id="sinks" xmlns="http://wwwen.uni.lu/snt">
+<nodeset id="sinks">
     <category name="sql injection" abbreviation="snk_sqli">
-        <node name="java.sql.Statement.executeUpdate(Ljava/lang/String;)I;"
-              parlabels="all(HH)"/>
-        <node name="java.sql.Statement.executeUpdate(Ljava/lang/String,I;)I;"
-              parlabels="all(HH)"/>
-        <node name="java.sql.Statement.executeUpdate(Ljava/lang/String,LLI;)I;"
-              parlabels="all(HH)"/>
-        <node
-                name="java.sql.Statement.executeUpdate(Ljava/lang/String,LLjava/lang/String;)I;"
-                parlabels="all(HH)"/>
-        <node
-                name="java.sql.Statement.executeQuery(Ljava/lang/String;)Ljava/sql/ResultSet;"
-                parlabels="all(HH)"/>
-        <node name="java.sql.Statement.execute(Ljava/lang/String;)B;"
-              parlabels="all(HH)"/>
-        <node name="java.sql.Statement.execute(Ljava/lang/String,I;)B;"
-              parlabels="all(HH)"/>
-        <node name="java.sql.Statement.execute(Ljava/lang/String,LLjava/lang/String;)B;"
-              parlabels="all(HH)"/>
-        <node name="java.sql.Statement.execute(Ljava/lang/String,LLI;)B;"
-              parlabels="all(HH)"/>
-        <node name="java.sql.Statement.addBatch(Ljava/lang/String;)V;"
-              parlabels="all(HH)"/>
+        <!--<node name="java.sql.Statement.executeUpdate(Ljava/lang/String;)I"
+              parlabels="0(HH)"/>
+        <node name="java.sql.Statement.executeUpdate(Ljava/lang/String,I;)I"
+              parlabels="0(HH)"/>
+        <node name="java.sql.Statement.executeUpdate(Ljava/lang/String,LLI;)I"
+              parlabels="0(HH)"/>
+        <node name="java.sql.Statement.executeUpdate(Ljava/lang/String,LLjava/lang/String;)I"
+              parlabels="0(HH)"/>-->
+        <node name="java.sql.Statement.executeQuery(Ljava/lang/String;)Ljava/sql/ResultSet;"
+              parlabels="0(HH)"/>
+        <node name="java.sql.Statement.execute(Ljava/lang/String;)B"
+              parlabels="0(HH)"/>
+        <node name="java.sql.Statement.execute(Ljava/lang/String,I;)B"
+              parlabels="0(HH)"/>
+        <node name="java.sql.Statement.execute(Ljava/lang/String,LLjava/lang/String;)B"
+              parlabels="0(HH)"/>
+        <node name="java.sql.Statement.execute(Ljava/lang/String,LLI;)B"
+              parlabels="0(HH)"/>
+        <node name="java.sql.Statement.addBatch(Ljava/lang/String;)V"
+              parlabels="0(HH)"/>
+        <node name="java.sql.Statement.execute(Ljava/lang/String;)Z"
+              parlabels="0(HH)"/>
+    </category>
+
+    <category name="prepared statements" abbreviation="snk_prep">
         <node name="java.sql.PreparedStatement.executeQuery()Ljava/sql/ResultSet;"
               parlabels="all(HH)"/>
     </category>
@@ -33,9 +36,9 @@
 
     <category name="xss" abbreviation="snk_xss">
         <node name="javax.servlet.ServletOutputStream.print(Ljava/lang/String;)V"
-              parlabels="0(LH)"/>
+              parlabels="0(HH)"/>
         <node name="javax.servlet.ServletOutputStream.println(Ljava/lang/String;)V"
-              parlabels="0(LH)"/>
+              parlabels="0(HH)"/>
         <node name="javax.servlet.jsp.JspWriter.print(Ljava/lang/String;)V"
               parlabels="0(HH)"/>
         <node name="javax.servlet.jsp.JspWriter.println(Ljava/lang/String;)V"
@@ -45,14 +48,50 @@
         <node name="java.io.PrintWriter.println(Ljava/lang/String;)V"
               parlabels="0(HH)"/>
     </category>
-    <category name="information leakage" abbreviation="snk_il">
-        <node name="java.io.PrintStream.write(Ljava/lang/String;)V;"
-              parlabels="all(LH)"/>
-        <node name="org.radeox.util.logging.Logger.log(I,Ljava/lang/String;)V;"
-              parlabels="all(LH)"/>
+
+
+    <category name="path traversal" abbreviation="snk_pt">
+        <node name="java.io.File(Ljava/lang/String;)Ljava/io/File;"
+              parlabels="all(HH)"/>
+        <node
+                name="java.io.RandomAccessFile(Ljava/lang/String,Ljava/lang/String;)Ljava/io/RandomAccessFile;"
+                parlabels="all(HH)"/>
+        <node name="java.io.FileReader(Ljava/lang/String;)Ljava/io/FileReader;"
+              parlabels="all(HH)"/>
+        <node
+                name="java.io.FileInputStream(Ljava/lang/String;)Ljava/io/FileInputStream;"
+                parlabels="all(HH)"/>
+        <node name="java.io.FileWriter(Ljava/lang/String;)Ljava/io/FileWriter;"
+              parlabels="all(HH)"/>
+        <node
+                name="java.io.FileOutputStream(Ljava/lang/String;)Ljava/io/FileOutputStream;"
+                parlabels="all(HH)"/>
+    </category>
+    <category name="command injection" abbreviation="snk_ci">
+        <node name="java.lang.Runtime.exec(Ljava/lang/String;)Ljava/lang/Process;"
+              parlabels="all(HH)"/>
+        <node name="java.lang.Runtime.exec(LLjava/lang/String;)Ljava/lang/Process;"
+              parlabels="all(HH)"/>
+        <node
+                name="java.lang.Runtime.exec(Ljava/lang/String,LLjava/lang/String;)Ljava/lang/Process;"
+                parlabels="all(HH)"/>
+        <node
+                name="java.lang.Runtime.exec(LLjava/lang/String,LLjava/lang/String;)Ljava/lang/Process;"
+                parlabels="all(HH)"/>
+        <node
+                name="java.lang.Runtime.exec(LLjava/lang/String,LLjava/lang/String,Ljava/io/File;)Ljava/lang/Process;"
+                parlabels="all(HH)"/>
+    </category>
+    <!--<category name="information leakage" abbreviation="snk_il">
+        <node name="java.io.PrintStream.write(Ljava/lang/String;)V"
+              parlabels="0(LH)"/>
+        <node name="org.radeox.util.logging.Logger.log(I,Ljava/lang/String;)V"
+              parlabels="0(LH)"/>
         <node name="java.util.Properties.getProperty(Ljava/lang/String;)Ljava/lang/String;"
               parlabels="0(LH)"/>
-    </category>
+        <node name="javax.servlet.ServletOutputStream.write([B)V" parlabels="0(HH)"/>
+        <node name="java.io.PrintStream.println(Ljava/lang/String;)V" parlabels="0(HH)"/>
+    </category>-->
     <category name="xpath injection" abbreviation="snk_xi">
         <node
                 name="javax.xml.xpath.XPath.compile(Ljava/lang/String;)Ljavax/xml/xpath/XPathExpression;"
@@ -63,12 +102,9 @@
         <node
                 name="javax.xml.xpath.XPathExpression.evaluate(Ljava/lang/Object;Ljavax/xml/namespace/QName;)Ljava/lang/Object;"
                 parlabels="0(HH)"/>
-        <node
-                name="javax.xml.xpath.XPath.evaluate(Ljava/lang/String,Ljava/lang/Object;)Ljava/lang/String;"
-                parlabels="0(HH)"/>
-
-        <node   name="javax.xml.xpath.XPath.evaluate(Ljava/lang/String;Ljava/lang/Object;Ljavax/xml/namespace/QName;)Ljava/lang/Object;"
-                parlabels="0(HH)"/>
+        <node name="javax.xml.xpath.XPath.evaluate(Ljava/lang/String,Ljava/lang/Object;)Ljava/lang/String;" parlabels="0(HH)"/>
+        <node  name="javax.xml.xpath.XPath.evaluate(Ljava/lang/String;Ljava/lang/Object;Ljavax/xml/namespace/QName;)Ljava/lang/Object;"
+               parlabels="0(HH)"/>
         <node
                 name="javax.xml.xpath.XPath.evaluate(Ljava/lang/String,Ljava/lang/Object,Ljavax/xml/namespace/QName;)Ljava/lang/Object;"
                 parlabels="0(HH)"/>
@@ -77,49 +113,53 @@
                 parlabels="0(HH)"/>
         <node
                 name="org.apache.xpath.XPath(Ljava/lang/String,javax/xml/transform/SourceLocator,Lorg/apache/xml/utils/PrefixResolver,I;)Lorg/apache/xpath/XPath;"
-                parlabels="all(LH)"/>
+                parlabels="0(HH)"/>
         <node
                 name="org.apache.xpath.XPath(Ljava/lang/String,javax/xml/transform/SourceLocator,Lorg/apache/xml/utils/PrefixResolver,I,Ljavax/xml/transform/ErrorListener;)Lorg/apache/xpath/XPath;"
-                parlabels="all(LH)"/>
+                parlabels="0(HH)"/>
         <node
                 name="org.apache.xpath.XPath(Ljava/lang/String,javax/xml/transform/SourceLocator,Lorg/apache/xml/utils/PrefixResolver,I,Ljavax/xml/transform/ErrorListener,Lorg/apache/xpath/compiler/FunctionTable;)Lorg/apache/xpath/XPath;"
-                parlabels="all(LH)"/>
+                parlabels="0(HH)"/>
         <node
                 name="org.apache.commons.jxpath.JXPathContext.getValue(Ljava/lang/String;)Ljava/lang/Object;"
-                parlabels="all(LH)"/>
+                parlabels="0(HH)"/>
         <node
                 name="org.xmldb.api.modules.XPathQueryService.query(Ljava/lang/String;)Lorg/xmldb/api/base/ResourceSet;"
-                parlabels="all(LH)"/>
+                parlabels="0(HH)"/>
         <node
                 name="org.xmldb.api.modules.XMLResource.setContent(Ljava/lang/Object;)V;"
-                parlabels="all(LH)"/>
+                parlabels="0(HH)"/>
     </category>
 
     <category name="xml injection" abbreviation="snk_xml">
         <node name="org.xml.sax.XMLReader.parse(Lorg/xml/sax/InputSource;)V" parlabels="0(HH)"/>
+        <node name="PubSubHubbub.PuSHhandler.processFeeds(Ljava/lang/String;Lcom/sun/syndication/feed/synd/SyndFeed;)V" parlabels="1(HH)"/>
         <node name="org.apache.http.client.methods.HttpPost.setEntity(Lorg/apache/http/HttpEntity;)V" parlabels="0(HH)"/>
         <node name="org.apache.http.client.methods.HttpPost.setHeader(Ljava/lang/String;Ljava/lang/String;)V" parlabels="0(HH),1(HH)"/>
 
     </category>
 
     <category name="class loading" abbreviation="snk_cll">
-        <node name="java.lang.Class.forName(Ljava/lang/String;)Ljava/lang/Class;" parlabels="0(HH)"/>
+        <node name="java.lang.Class.forName(Ljava/lang/String;)Ljava/lang/Class;" parlabels="0(LH)"/>
         <node name="java.lang.Class.getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;"
-              parlabels="0(HH)"/>
+              parlabels="0(LH)"/>
         <node name="java.lang.reflect.Method.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;"
-              parlabels="0(HH)"/>
-
+              parlabels="0(LH)"/>
     </category>
 
     <category name="ldap injection" abbreviation="snk_li">
-        <node name="com.novell.ldap.LDAPConnection.connect(Ljava/lang/String,I;)V;"
-              parlabels="all(HH)"/>
+        <node name="com.novell.ldap.LDAPConnection.connect(Ljava/lang/String,I;)V"
+              parlabels="all(LH)"/>
         <node
                 name="com.novell.ldap.LDAPConnection.search(Ljava/lang/String,I,Ljava/lang/String,LLjava/lang/String,B;)Lcom/novell/ldap/LDAPSearchQueue;"
-                parlabels="all(HH)"/>
+                parlabels="all(LH)"/>
         <node
                 name="com.novell.ldap.LDAPConnection.search(Ljava/lang/String,I,Ljava/lang/String,LLjava/lang/String,B,Lcom/novell/ldap/LDAPSearchQueue;)Lcom/novell/ldap/LDAPSearchQueue;"
-                parlabels="all(HH)"/>
+                parlabels="all(LH)"/>
+    </category>
+
+    <category name="remote command execution" abbreviation="snk_ce">
+        <node name="org.apache.xmlrpc.XmlRpcServer.execute(Ljava/io/InputStream;)[B" parlabels="0(HH)"/>
     </category>
 
 </nodeset>

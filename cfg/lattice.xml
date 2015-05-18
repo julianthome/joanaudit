@@ -1,4 +1,4 @@
-<lattice xmlns="http://wwwen.uni.lu/snt">
+<lattice>
 	<levels>
 		<level id="LH" desc="non-confidential and trusted"/>
 		<level id="HH" desc="confidential and trusted"/>

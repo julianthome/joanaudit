@@ -1,43 +1,42 @@
-<classes xmlns="http://wwwen.uni.lu/snt">
-    <!-- here we defined what we would like to match (sources/sinks/declassifiers) -->
-    <class desc="xml injection">
-        <elem name="src_pt"/>
-        <elem name="src_ut"/>
-        <elem name="src_cp"/>
-        <elem name="dcl_xml"/>
-        <elem name="snk_xml"/>
-        <elem name="snk_xss"/>
-    </class>
-
-    <class desc="class loading">
-        <elem name="src_pt"/>
-        <elem name="src_hm"/>
-        <elem name="src_ut"/>
-        <elem name="src_cp"/>
-        <elem name="snk_cll"/>
-    </class>
-
-    <class desc="sql injection">
-        <elem name="src_pt"/>
-        <elem name="src_hm"/>
-        <elem name="src_ut"/>
-        <elem name="src_cp"/>
-        <elem name="dcl_sqli"/>
-        <elem name="snk_sqli"/>
-    </class>
-
+<classes>
+    <!-- What do we like to match (sources/sinks/declassifiers) -->
     <class desc="xpath injection">
         <elem name="src_pt"/>
-        <elem name="src_ut"/>
-        <elem name="src_cp"/>
         <elem name="dcl_xi"/>
         <elem name="snk_xi"/>
     </class>
-
-    <class desc="time bomb">
-        <elem name="src_nd"/>
+    <class desc="sql injection">
+        <elem name="src_pt"/>
+        <elem name="dcl_prep"/>
+        <elem name="snk_prep"/>
+    </class>
+    <class desc="sql injection">
+        <elem name="src_pt"/>
         <elem name="dcl_sqli"/>
         <elem name="snk_sqli"/>
     </class>
-
+    <class desc="xml injection">
+        <elem name="src_pt"/>
+        <elem name="dcl_xml"/>
+        <elem name="snk_xml"/>
+    </class>
+    <!--<class desc="command execution">
+        <elem name="src_pt"/>
+        <elem name="snk_ce"/>
+    </class
+    <class desc="html injection">
+        <elem name="src_pt"/>
+        <elem name="dcl_html"/>
+        <elem name="dcl_xml"/>
+        <elem name="snk_xss"/>
+    </class>
+    <class desc="class loading">
+        <elem name="src_pt"/>
+        <elem name="snk_cll"/>
+    </class>
+    <class desc="information leakage">
+        <elem name="src_pt"/>
+        <elem name="dcl_enc"/>
+        <elem name="snk_il"/>
+    </class>-->
 </classes>

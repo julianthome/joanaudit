@@ -1,4 +1,4 @@
-<nodeset id="sources" xmlns="http://wwwen.uni.lu/snt">
+<nodeset id="sources">
 	<category name="parameter tampering" abbreviation="src_pt">
 		<node
 				name="javax.servlet.ServletRequest.getParameter(Ljava/lang/String;)Ljava/lang/String;"
@@ -30,8 +30,59 @@
 		<node
 				name="javax.servlet.ServletRequestWrapper.getParameter(Ljava/lang/String;)Ljava/lang/String;"
 				parlabels="return(LL)"/>
+
+
+		<node name="org.owasp.webgoat.session.ParameterParser.getRawParameter(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+		<node name="org.owasp.webgoat.session.ParameterParser.getStringParameter(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+		<node name="org.owasp.webgoat.session.ParameterParser.getIntParameter(Ljava/lang/String;)I"
+			  parlabels="return(LL)"/>
+		<node name="org.owasp.webgoat.session.ParameterParser.getParameterValues(Ljava/lang/String;)[Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+
+		<node name="javax.servlet.http.HttpServletRequest.getInputStream()Ljavax/servlet/ServletInputStream;"
+			  parlabels="return(LL)"/>
+
+		<node name="org.apache.roller.weblogger.pojos.Weblog.getName()Ljava/lang/String;"
+			  parlabels="all(LL)"/>
+		<node name="org.apache.roller.weblogger.pojos.Weblog.getTagline()Ljava/lang/String;"
+			  parlabels="all(LL)"/>
+		<node name="org.apache.roller.weblogger.pojos.Weblog.getEmailAddress()Ljava/lang/String;"
+			  parlabels="all(LL)"/>
+		<node name="org.apache.roller.weblogger.pojos.WeblogEntryComment.getContent()Ljava/lang/String;"
+			  parlabels="all(LL)"/>
+		<node name="org.apache.roller.weblogger.config.WebloggerRuntimeConfig.getProperty(Ljava/lang/String;)Ljava/lang/String;"
+			  parlabels="all(LL)"/>
+		<node name="java.lang.System.getProperties()Ljava/util/Properties;"
+			  parlabels="return(HL)"/>
+
+		<node name="org.apache.abdera.protocol.server.ResponseContext.getHeaders(Ljava/lang/String;)[Ljava/lang/Object;"
+			  parlabels="return(LL)"/>
+		<node name="javax.servlet.http.HttpSession.getId()Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+
+		<node name="net.sourceforge.pebble.util.SecurityUtils.main([Ljava/lang/String;)V" parlabels="all(LH)"/>
+		<node name="javax.servlet.ServletRequestWrapper.getInputStream()Ljavax/servlet/ServletInputStream;"
+			  parlabels="all(LL)"/>
+
+		<node
+				name="org.apache.xmlrpc.XmlRpcServer.execute(Ljava/io/InputStream;)[B"
+				parlabels="return(HL)"/>
+
+		<node
+				name="org.springframework.security.authentication.encoding.PasswordEncoder.encodePassword(Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/String;"
+				parlabels="0(LL)"/>
+
+		<node name="org.apache.stratos.cli.CliTool.handleConsoleInputs([Ljava/lang/String;)V"
+			  parlabels="0(LL)"/>
+
+		<node name="PubSubHubbub.Subscriber.subscribe(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)I"
+			  parlabels="0(LL)"/>
 		<node name="org.apache.http.client.methods.HttpPost.&lt;init&gt;(Ljava/lang/String;)V" parlabels="all(LL)"/>
 		<node name="org.apache.http.client.methods.HttpGet.&lt;init&gt;(Ljava/lang/String;)V" parlabels="all(LL)"/>
+		<node name="net.sf.regain.util.sharedtag.taglib.JspPageRequest.getParameter(Ljava/lang/String;)Ljava/lang/String;"
+				parlabels="return(LL)"/>
 	</category>
 
 	<category name="header manipulation" abbreviation="src_hm">

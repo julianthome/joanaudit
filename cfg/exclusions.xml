@@ -1,10 +1,10 @@
-<exclusions xmlns="http://wwwen.uni.lu/snt">
+<exclusions>
 	<exclusion pattern="java/awt/.*"/>
 	<exclusion pattern="javax/swing/.*"/>
 	<exclusion pattern="java/nio/.*"/>
 	<exclusion pattern="java/io/.*"/>
-	<exclusion pattern="java/net/.*"/>
-	<exclusion pattern="java/lang/AbstractStringBuilder.*"/>
+    <exclusion pattern="java/net/.*"/>
+    <exclusion pattern="java/lang/AbstractStringBuilder.*"/>
 	<exclusion pattern="java/lang/StringBuffer.*"/>
 	<exclusion pattern="java/lang/AssertionError.*"/>
 	<exclusion pattern="java/lang/CharacterData.*"/>
@@ -12,4 +12,14 @@
 	<exclusion pattern="sun/swing/.*"/>
 	<exclusion pattern="com/sun/.*"/>
 	<exclusion pattern="sun/.*"/>
+	<exclusion pattern="apple/awt/.*"/>
+	<exclusion pattern="com/apple/.*"/>
+	<exclusion pattern="com/sun/syndication/.*"/>
+	<exclusion pattern="org/eclipse/jetty/util/StringUtil.*"/>
+	<exclusion pattern="org/eclipse/jetty/http/HttpFields.*"/>
+	<exclusion pattern="org/eclipse/jetty/util/log/.*"/>
+	<exclusion pattern="org/eclipse/jetty/util/Utf8StringBuilder.*"/>
+	<exclusion pattern="org/eclipse/jetty/util/UrlEncoded.*"/>
+	<exclusion pattern="org/eclipse/jetty/util/TypeUtil.*"/>
+	<exclusion pattern="org/eclipse/jetty/util/StringMap.*"/>
 </exclusions>
