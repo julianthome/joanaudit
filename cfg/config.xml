@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<configuration xmlns:xi="http://www.w3.org/2001/XInclude"
-	xmlns="http://wwwen.uni.lu/snt" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
-	xs:schemaLocation="http://wwwen.uni.lu/snt config.xsd">
+<configuration xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="config.xsd">
 	<xi:include href="sources.xml" />
 	<xi:include href="sinks.xml" />
 	<xi:include href="declassifiers.xml" />
@@ -10,4 +8,5 @@
 	<xi:include href="exclusions.xml" />
 	<xi:include href="entrypoints.xml" />
 	<xi:include href="classes.xml"/>
+	<xi:include href="autofix.xml"/>
 </configuration>

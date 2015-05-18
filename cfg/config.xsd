@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="http://wwwen.uni.lu/snt" xmlns="http://wwwen.uni.lu/snt"
-           elementFormDefault="qualified">
-    <!-- Just include this to allow nodeset being a root attribute -->
-    <xs:import namespace="http://www.w3.org/XML/1998/namespace"
-               schemaLocation="http://www.w3.org/2001/03/xml.xsd"/>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+        <!-- Just include this to allow nodeset being a root attribute -->
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/03/xml.xsd"/>
     <xs:element name="configuration">
         <xs:complexType>
             <xs:sequence>
@@ -147,6 +144,28 @@
                                         </xs:element>
                                     </xs:sequence>
                                     <xs:attribute name="desc" type="xs:string"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute ref="xml:base"/>
+                    </xs:complexType>
+                </xs:element>
+                <!-- classes END -->
+                <!-- classes BEGIN -->
+                <xs:element name="autofix">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="vulnerability" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="context" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="pattern" type="xs:string"/>
+                                                <xs:attribute name="dcl" type="xs:string"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="sink" type="xs:string"/>
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
