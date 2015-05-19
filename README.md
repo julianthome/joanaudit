@@ -67,6 +67,7 @@ The configuration parts consists of several parts. The following XML file illust
 	<xi:include href="entrypoints.xml" />
 	
 	<xi:include href="classes.xml"/>
+	<xi:include href="autofix.xml"/>
 
 </configuration>
 ```
@@ -74,7 +75,7 @@ The configuration parts consists of several parts. The following XML file illust
 As one can see, the main configuration file includes configurations for source, sink and declassfier signatures, a configuration
 part for the lattice, exclusion rules, i.e. a set of Java packages or classes that can be dropped during the SDG construction. Moreover,
 the configuration includes a set of entrypoints, i.e. the starting points for SDG construction. The file *classes.xml* contains categories of sources, sinks, and declassifiers. If sources, sinks and declassifiers are connected by a path but do not belong
-to the same category, they are filtered out. The following subsections explain the different parts of the configuration in detail.
+to the same category, they are filtered out. The file *autofix.xml* contains mappings from sinks to declassifier and context patterns that a string that flows to a sink has to match in order to identify an appropriate declassifer to fix the vulnerability. The following subsections explain the different parts of the configuration in detail.
 
 ## Security Lattice
 
@@ -152,9 +153,12 @@ of *XPath.evaluate()* with the security label HH.
 ``` xml
 <!-- sinks.xml -->
 <nodeset id="sinks" xmlns="http://wwwen.uni.lu/snt">
-	<node name="javax.xml.xpath.XPath.evaluate(Ljava/lang/String,Ljava/lang/Object;)Ljava/lang/String;"
-	parlabels="all(HH)"/>
-</category>
+	<category abbreviation="snk_xi"/>
+		<node name="javax.xml.xpath.XPath.evaluate(Ljava/lang/String,Ljava/lang/Object;)Ljava/lang/String;"
+		parlabels="all(HH)"/>
+	</category>
+<!-- ... -->
+</nodeset>	
 ```
 
 Besides sources and sinks, there is also the declassifier configuration listed below.
@@ -162,10 +166,12 @@ Besides sources and sinks, there is also the declassifier configuration listed b
 ``` xml
 <!-- declassifiers.xml -->
 <nodeset id="declassifiers" xmlns="http://wwwen.uni.lu/snt">
-<category name="xpath injection" abbreviation="dcl_xi">
-	<node name="org.owasp.esapi.Encoder.encodeForXPath(Ljava/lang/String;)Ljava/lang/String;"
-	parlabels="0(LL>LH)"/>
-</category>
+	<category name="xpath injection" abbreviation="dcl_xi">
+		<node name="org.owasp.esapi.Encoder.encodeForXPath(Ljava/lang/String;)Ljava/lang/String;"
+		parlabels="0(LL>LH)"/>
+	</category>
+<!-- ... -->
+</nodeset>
 ```
 By and large, the declassifier configuration is the same as compared to sources and sinks with two exceptions: the *id* tag must have the value *declassifiers*, and the structure of the attribute *parlabels* has to match the production rule *(return|all|[0-9]+)(security-level0 > secuirty-level1)* whereas *securitylevel0* is the required and *security-level1* is the provided security level. The required security level imposes the restriction on arriving information to have a security level smaller then or equal to than *securityLevel0* whereas *securityLevel1* is the 
 security-level to which the arriving information should be declassified to. Declassification only makes sense if 
@@ -231,6 +237,16 @@ should be matched.
 </class>
 ```
 
+## Autofix (experimental)
+
+JoanAudit tries to infer the string that reaches the sink by using a simple form of symbolic execution that can deal with simple string operations. Moreover, JoanAudit computes the context of the input variables. For an XPath sink that is labelled with *snk_xi* in sinks.xml, we might end up with the following result ```/users/user[@nick='v1' and @password='v2']``` where *v1* and *v2* are symbolic input variables. For each symbolic variable, we are applying the patterns that are specified in the the *<vulnerability>* tag (for v1 on ```/users/user[@nick='``` and for v2 on ```/users/user[@nick='v1' and @password='```). If there is a match, the declassifier that is configured within the *dcl* attribute can be applied (in the example below *dcl_xi* which refers to the ESAPI sanitisation function configured in *declassifiers.xml* is used).
+
+``` xml
+ <vulnerability sink="snk_xi">
+        <context pattern=".*" dcl="dcl_xi"/>
+</vulnerability>
+```
+
 
 # Usage
 
@@ -264,6 +280,7 @@ The following table explains the meaning of the different options that can be co
 | -cp,--classpath <cp>  |                      Classpath - multiple entries should be separated by ':' |
 | -dir,--directorypath <dir>   |               Path to the directory containing the java sources |
 | -ept,--entrypoint <entrypoint>  |            The entrypoint to start the analysis |
+| -fix,--autofix 			|   Try to fix vulnerability (autofix.xml is used for filtering)|
 | -h                           |               Print this message |
 | -in,--sdg-in-file <inputfile>  |             Read the SDG file |
 | -jbd,--joanabasedir <jbd>     |              Joana Basedir - needed to load Java stubs. |
