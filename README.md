@@ -239,7 +239,7 @@ should be matched.
 
 ## Autofix (experimental)
 
-JoanAudit tries to infer the string that reaches the sink by using a simple form of symbolic execution that can deal with simple string operations. Moreover, JoanAudit computes the context of the input variables. For an XPath sink that is labelled with *snk_xi* in sinks.xml, we might end up with the following result ```/users/user[@nick='v1' and @password='v2']``` where *v1* and *v2* are symbolic input variables. For each symbolic variable, we are applying the patterns that are specified in the the *<vulnerability>* tag (for v1 on ```/users/user[@nick='``` and for v2 on ```/users/user[@nick='v1' and @password='```). If there is a match, the declassifier that is configured within the *dcl* attribute can be applied (in the example below *dcl_xi* which refers to the ESAPI sanitisation function configured in *declassifiers.xml* is used).
+JoanAudit tries to infer the string that reaches the a by using a simple form of symbolic execution that can deal with simple string operations. Moreover, JoanAudit computes the context of the input variables. For an XPath sink that is labelled with *snk_xi* in sinks.xml, we compute a result string like ```/users/user[@nick='v1' and @password='v2']``` where *v1* and *v2* are symbolic input variables. For each symbolic variable, we are applying the patterns that are specified in the the *<vulnerability>* tag (for v1 on ```/users/user[@nick='``` and for v2 on ```/users/user[@nick='v1' and @password='```). If there is a match, the declassifier that is configured within the *dcl* attribute can be applied (in the example below *dcl_xi* which refers to the ESAPI sanitisation function configured in *declassifiers.xml* is used).
 
 ``` xml
  <vulnerability sink="snk_xi">
