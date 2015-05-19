@@ -247,7 +247,6 @@ JoanAudit tries to infer the string that reaches a sink by using a simple form o
 </vulnerability>
 ```
 
-
 # Usage
 
 JoanAudit is a single executable *.jar*-File that can be executed right from a shell. 
