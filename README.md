@@ -108,7 +108,9 @@ be used (*id*) and a short description text (*desc*). The *smeq* (smaller or equ
 <nodeset id="sources">
 	<category name="parameter tampering" abbreviation="src_pt">
 		<node name="javax.servlet.ServletRequest.getParameter(Ljava/lang/String;)Ljava/lang/String;" parlabels="return(LL)"/>
+		<!-- ... -->
 	</category>
+<!-- ... -->
 </nodeset>
 ```
 
@@ -146,6 +148,7 @@ of *XPath.evaluate()* with the security label HH.
 <nodeset id="sinks">
 	<category abbreviation="snk_xi"/>
 		<node name="javax.xml.xpath.XPath.evaluate(Ljava/lang/String,Ljava/lang/Object;)Ljava/lang/String;" parlabels="1(HH)"/>
+		<!-- ... -->
 	</category>
 <!-- ... -->
 </nodeset>	
@@ -155,9 +158,10 @@ Besides sources and sinks, there is also the declassifier configuration listed b
 
 ``` xml
 <!-- declassifiers.xml -->
-<nodeset id="declassifiers" xmlns="http://wwwen.uni.lu/snt">
+<nodeset id="declassifiers">
 	<category name="xpath injection" abbreviation="dcl_xi">
 		<node name="org.owasp.esapi.Encoder.encodeForXPath(Ljava/lang/String;)Ljava/lang/String;" parlabels="1(LL>LH)"/>
+	<!-- ... -->
 	</category>
 <!-- ... -->
 </nodeset>
@@ -180,6 +184,7 @@ exclude single classes. In the example below, two packages and one class are fil
 	<exclusion pattern="java/awt/.*"/>
 	<exclusion pattern="javax/swing/.*"/>
 	<exclusion pattern="org/eclipse/jetty/util/StringMap.*"/>
+<!-- ... -->
 </exclusions>
 ```
 
@@ -196,10 +201,12 @@ that inherit or implement from other classes, abstract classes and/or interfaces
 		<function name="doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V"/>
 		<function name="doGet(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V"/>
 		<function name="service(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V"/>
+		<!-- ... -->
 	</entrypoint>
 	<entrypoint>
 		<function name="main([Ljava/lang/String;)V"/>
 	</entrypoint>
+<!-- ... -->
 </entrypoints>
 ```
 
@@ -221,11 +228,15 @@ should be matched.
 
 ``` xml
 <!-- classes.xml -->
-<class desc="xpath injection">
-	<elem name="src_pt"/>
-	<elem name="dcl_xi"/>
-	<elem name="snk_xi"/>
-</class>
+<classes>
+	<class desc="xpath injection">
+		<elem name="src_pt"/>
+		<elem name="dcl_xi"/>
+		<elem name="snk_xi"/>
+		<!-- ... -->
+	</class>
+<!-- ... -->
+</classes>
 ```
 
 ## Autofix (experimental)
@@ -234,9 +245,13 @@ JoanAudit tries to infer the string that reaches a sink by using a simple form o
 
 ``` xml
 <!-- autofix.xml -->
-<vulnerability sink="snk_xi">
-	<context pattern=".*" dcl="dcl_xi"/>
-</vulnerability>
+<autofix>
+	<vulnerability sink="snk_xi">
+		<context pattern=".*" dcl="dcl_xi"/>
+		<!-- ... -->
+	</vulnerability>
+<!-- ... -->
+</autofix>
 ```
 
 # Usage
