@@ -53,22 +53,15 @@ The configuration parts consists of several parts. The following XML file illust
 
 ``` xml
 <!-- config.xml -->
-<configuration xmlns:xi="http://www.w3.org/2001/XInclude"
-	xmlns="http://wwwen.uni.lu/snt" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
-	xs:schemaLocation="http://wwwen.uni.lu/snt config.xsd">
-	<xi:include href="sources.xml" />
-	<xi:include href="sinks.xml" />
-	<xi:include href="declassifiers.xml" />
-
-	<xi:include href="lattice.xml" />
-	
-	<xi:include href="exclusions.xml" />
-	
-	<xi:include href="entrypoints.xml" />
-	
-	<xi:include href="classes.xml"/>
-	<xi:include href="autofix.xml"/>
-
+<configuration xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="config.xsd">
+        <xi:include href="sources.xml" />
+        <xi:include href="sinks.xml" />
+        <xi:include href="declassifiers.xml" />
+        <xi:include href="lattice.xml" />
+        <xi:include href="exclusions.xml" />
+        <xi:include href="entrypoints.xml" />
+        <xi:include href="classes.xml"/>
+        <xi:include href="autofix.xml"/>
 </configuration>
 ```
 
@@ -90,7 +83,7 @@ be used (*id*) and a short description text (*desc*). The *smeq* (smaller or equ
 
 ``` xml
 <!-- lattice xml -->
-<lattice xmlns="http://wwwen.uni.lu/snt">
+<lattice>
 	<levels>
 		<level id="LH" desc="non-confidential and trusted"/>
 		<level id="HH" desc="confidential and trusted"/>
@@ -112,11 +105,9 @@ be used (*id*) and a short description text (*desc*). The *smeq* (smaller or equ
 
 ``` xml
 <!-- sources .xml -->
-<nodeset id="sources" xmlns="http://wwwen.uni.lu/snt">
+<nodeset id="sources">
 	<category name="parameter tampering" abbreviation="src_pt">
-		<node
-				name="javax.servlet.ServletRequest.getParameter(Ljava/lang/String;)Ljava/lang/String;"
-				parlabels="return(LL)"/>
+		<node name="javax.servlet.ServletRequest.getParameter(Ljava/lang/String;)Ljava/lang/String;" parlabels="return(LL)"/>
 	</category>
 </nodeset>
 ```
@@ -138,7 +129,7 @@ is assigned to a specific part of the same signature (*parlabel*). The *parlabel
 
 * return: Return node of the function is labeled.
 * all: The whole function entry is labeled.
-* [0-9]: Actual parameter with the given number is labeled (first actual parameter has index 0).
+* [0-9]: Actual parameter with the given number is labeled (first actual parameter has index 1).
 * security-level : The security label that is being used for the selected part. The configuration of this
   part is dependent on the lattice configuration where security levels can be freely defined in the
   *id* attribute of the *level* tag. In our diamond lattice example, security-level could be one of LL, HH, LH or HL.
@@ -152,10 +143,9 @@ of *XPath.evaluate()* with the security label HH.
 
 ``` xml
 <!-- sinks.xml -->
-<nodeset id="sinks" xmlns="http://wwwen.uni.lu/snt">
+<nodeset id="sinks">
 	<category abbreviation="snk_xi"/>
-		<node name="javax.xml.xpath.XPath.evaluate(Ljava/lang/String,Ljava/lang/Object;)Ljava/lang/String;"
-		parlabels="all(HH)"/>
+		<node name="javax.xml.xpath.XPath.evaluate(Ljava/lang/String,Ljava/lang/Object;)Ljava/lang/String;" parlabels="1(HH)"/>
 	</category>
 <!-- ... -->
 </nodeset>	
@@ -167,8 +157,7 @@ Besides sources and sinks, there is also the declassifier configuration listed b
 <!-- declassifiers.xml -->
 <nodeset id="declassifiers" xmlns="http://wwwen.uni.lu/snt">
 	<category name="xpath injection" abbreviation="dcl_xi">
-		<node name="org.owasp.esapi.Encoder.encodeForXPath(Ljava/lang/String;)Ljava/lang/String;"
-		parlabels="0(LL>LH)"/>
+		<node name="org.owasp.esapi.Encoder.encodeForXPath(Ljava/lang/String;)Ljava/lang/String;" parlabels="1(LL>LH)"/>
 	</category>
 <!-- ... -->
 </nodeset>
@@ -201,7 +190,8 @@ and main, whereas the former 3 share the same prefix given in the *name* attribu
 that inherit or implement from other classes, abstract classes and/or interfaces.
 
 ``` xml
-<entrypoints  xmlns="http://wwwen.uni.lu/snt">
+<!-- entrypoints.xml -->
+<entrypoints>
 	<entrypoint class="javax.servlet.http.HttpServlet">
 		<function name="doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V"/>
 		<function name="doGet(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V"/>
@@ -230,6 +220,7 @@ to the category *dcl_xi* (as configured in *declassifiers.xml*), and sinks that 
 should be matched.
 
 ``` xml
+<!-- classes.xml -->
 <class desc="xpath injection">
 	<elem name="src_pt"/>
 	<elem name="dcl_xi"/>
@@ -242,6 +233,7 @@ should be matched.
 JoanAudit tries to infer the string that reaches a sink by using a simple form of symbolic execution that can deal with simple string operations. Moreover, JoanAudit computes the context of the input variables. For an XPath sink that is labelled with *snk_xi* in sinks.xml, we might compute a result string like ```/users/user[@nick='v1' and @password='v2']``` where *v1* and *v2* are symbolic input variables. For each symbolic variable, JoanAudit applies the patterns that are specified in the *vulnerability* tag (for v1 on ```/users/user[@nick='``` and for v2 on ```/users/user[@nick='v1' and @password='```). If there is a match, the declassifier that is configured within the *dcl* attribute can be applied (in the example below *dcl_xi*, which refers to the ESAPI sanitisation function configured in *declassifiers.xml*, is used).
 
 ``` xml
+<!-- autofix.xml -->
 <vulnerability sink="snk_xi">
 	<context pattern=".*" dcl="dcl_xi"/>
 </vulnerability>
