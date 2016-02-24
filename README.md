@@ -1,4 +1,6 @@
-# JoanAudit 
+# JoanAudit
+
+:warning: We are currently working on a new release of JoanAudit which will be uploaded soon.
 
 [Overview](#overview)
 
@@ -21,18 +23,18 @@ JoanAudit is a program slicing tool for automatic extraction of security slices 
 
 <img src="https://github.com/julianthome/joanaudit/blob/master/img/tool.png" alt="Overview" width="400px" align="middle">
 
-The general overview is depicted in the figure above. The user configures a lattice (a partial order relation) 
-and provides a list of source, sink and declassifier bytecode signatures with their respective security levels. 
-Sources are functions that return data that is manipulable by a user (e.g. ``getParameter()`` or 
-``System.getProperty()``); sinks are usually sensitive functions where user provided data might 
-flow to and is processed (e.g. ``executeQuery()``); 
-and declassifiers are functions that escape user-provided, potentially malicious input. 
-By means of Joana, JoanAudit generates a System Dependence Graph (SDG) from the Java bytecode and automatically 
-annotates the given source code based on the pre-defined list of sources, sinks and declassifiers. 
-Afterwards, JoanAudit creates a list of security slices between sources and sinks, by filtering-out 
+The general overview is depicted in the figure above. The user configures a lattice (a partial order relation)
+and provides a list of source, sink and declassifier bytecode signatures with their respective security levels.
+Sources are functions that return data that is manipulable by a user (e.g. ``getParameter()`` or
+``System.getProperty()``); sinks are usually sensitive functions where user provided data might
+flow to and is processed (e.g. ``executeQuery()``);
+and declassifiers are functions that escape user-provided, potentially malicious input.
+By means of Joana, JoanAudit generates a System Dependence Graph (SDG) from the Java bytecode and automatically
+annotates the given source code based on the pre-defined list of sources, sinks and declassifiers.
+Afterwards, JoanAudit creates a list of security slices between sources and sinks, by filtering-out
 those paths that are irrelevant or that do not contain an illegal flow between sources and sinks. The output
 of JoanAudit is a report that lists potentially vulnerable paths of the program being analyzed. JoanAudit is a tool
-that helps security auditors to perform their security auditing tasks more efficiently by pinpointing potentially 
+that helps security auditors to perform their security auditing tasks more efficiently by pinpointing potentially
 vulnerable paths of a given program.
 
 
@@ -72,14 +74,14 @@ to the same category, they are filtered out. The file *autofix.xml* contains map
 
 ## Security Lattice
 
-The security lattice is used for information flow analysis. More specifically, it is used to augment 
+The security lattice is used for information flow analysis. More specifically, it is used to augment
 parts of the SDG with security label for the purpose of performing IFC on potentially sensitive paths (from sources through declassifiers to sinks). We are using IFC to filter out those paths that can be considered as secure based on the IFC analysis.
 
 A lattice is a partial ordered set of security levels. The configuration file *lattice.xml* illustrates the configuration of a [diamond lattice](http://www.cs.cornell.edu/andru/papers/robdecl-jcs.pdf) as depicted in the figure below. The root tag *lattice* contains
 *levels* subtags that define the different security levels of the lattice, whereas the
 *relation>* tag contains the relations between them. Each *level* tag contains the name of the security level to
-be used (*id*) and a short description text (*desc*). The *smeq* (smaller or equals) tags refer to the 
-*id's* that are being used in the *id* attributes of the *level* tags. The attribute *lhs* stands for left hand side (the left side of the smaller or equals operation) whereas *lhs* is the left hand side. The partial order relation based on the configuration flow is highlighted in the lattice figure. 
+be used (*id*) and a short description text (*desc*). The *smeq* (smaller or equals) tags refer to the
+*id's* that are being used in the *id* attributes of the *level* tags. The attribute *lhs* stands for left hand side (the left side of the smaller or equals operation) whereas *lhs* is the left hand side. The partial order relation based on the configuration flow is highlighted in the lattice figure.
 
 ``` xml
 <!-- lattice xml -->
@@ -96,7 +98,7 @@ be used (*id*) and a short description text (*desc*). The *smeq* (smaller or equ
 		<smeq lhs="LH" rhs="LL"/>
 		<smeq lhs="LH" rhs="HH"/>
 	</relations>
-</lattice> 
+</lattice>
 ```
 
 <img src="https://github.com/julianthome/joanaudit/blob/master/img/lattice.png" alt="Lattice" width="200px" align="middle">
@@ -115,14 +117,14 @@ be used (*id*) and a short description text (*desc*). The *smeq* (smaller or equ
 ```
 
 The code listing above shows a sample configuration file that contains the bytecode signature
-for a single source. The top element for all configuration files (for sinks, sources and declassifiers) is 
+for a single source. The top element for all configuration files (for sinks, sources and declassifiers) is
 the *nodeset* tag. This tag may contain multiple *category* tags. Sources, sinks and declassifiers
-are categorized which has two advantages: 
+are categorized which has two advantages:
 
 - We can just consider sources/sinks and declassifiers that belong to the same class. Thus, we
 can filter out those paths where this is not true.
 - We can create profiles for applications. If a developer has some knowledge about the internals of the application (which is usually the case), he may just consider consider those classes of sources, sinks
-and declassifiers that are of interest to him. 
+and declassifiers that are of interest to him.
 
 The category attribute *name* and *abbreviation* can be freely defined. However, it is important to note that
 *abbreviation* is used from JoanAudit to match given signatures with each other. The *category* tag can
@@ -151,7 +153,7 @@ of *XPath.evaluate()* with the security label HH.
 		<!-- ... -->
 	</category>
 <!-- ... -->
-</nodeset>	
+</nodeset>
 ```
 
 Besides sources and sinks, there is also the declassifier configuration listed below.
@@ -166,8 +168,8 @@ Besides sources and sinks, there is also the declassifier configuration listed b
 <!-- ... -->
 </nodeset>
 ```
-By and large, the declassifier configuration is the same as compared to sources and sinks with two exceptions: the *id* tag must have the value *declassifiers*, and the structure of the attribute *parlabels* has to match the production rule *(return|all|[0-9]+)(security-level0 > secuirty-level1)* whereas *securitylevel0* is the required and *security-level1* is the provided security level. The required security level imposes the restriction on arriving information to have a security level smaller then or equal to than *securityLevel0* whereas *securityLevel1* is the 
-security-level to which the arriving information should be declassified to. Declassification only makes sense if 
+By and large, the declassifier configuration is the same as compared to sources and sinks with two exceptions: the *id* tag must have the value *declassifiers*, and the structure of the attribute *parlabels* has to match the production rule *(return|all|[0-9]+)(security-level0 > secuirty-level1)* whereas *securitylevel0* is the required and *security-level1* is the provided security level. The required security level imposes the restriction on arriving information to have a security level smaller then or equal to than *securityLevel0* whereas *securityLevel1* is the
+security-level to which the arriving information should be declassified to. Declassification only makes sense if
 *security-level1* is smaller or equals than *security-level0*. In our example above, we declassify the information
 that passes through the first parameter of *encodeForXPath()* from *LL* (non-confidential and untrusted) to
 *LH* (confidential and untrusted). In other words, we are lowering the cautiousness of data that passes through the
@@ -212,16 +214,16 @@ that inherit or implement from other classes, abstract classes and/or interfaces
 
 ## Classes/Categories
 
-The categorization of sources, sinks and declassifiers helps to reduce the amount of potentially vulnerable paths that might be reported by JoanAudit and, hence, it reduces the manual effort for security auditors. 
+The categorization of sources, sinks and declassifiers helps to reduce the amount of potentially vulnerable paths that might be reported by JoanAudit and, hence, it reduces the manual effort for security auditors.
 
-The first reason for using categories is that some declassifiers and sinks are not related 
+The first reason for using categories is that some declassifiers and sinks are not related
 while others are. For example, the sanitization function *encodeForXPath()* sanitizes strings that can be used
-safely as parameter of *XPath.evaluate()*. But a flow of a string that contains the result of *encodeForXpath()* 
+safely as parameter of *XPath.evaluate()*. But a flow of a string that contains the result of *encodeForXpath()*
 to an SQL sink like *executeQuery()* cannot be considered as safe.
 
 The second reason for using categories is to allow security auditors to profile the application under test. If you have a rich set of sources, sinks and declassifiers, auditors do not want to create a new configuration for each
 application. They can use categories instead, to focus their auditing task just on particular sources, sinks and
-can leave out all functions that are known to be secure. The configuration example below means that just 
+can leave out all functions that are known to be secure. The configuration example below means that just
 sources that belong to the category *src_pt* (as configured in *sources.xml*), declassifiers that belong
 to the category *dcl_xi* (as configured in *declassifiers.xml*), and sinks that belong to the category *snk_xi*
 should be matched.
@@ -256,8 +258,8 @@ JoanAudit tries to infer the string that reaches a sink by using a simple form o
 
 # Usage
 
-JoanAudit is a single executable *.jar*-File that can be executed right from a shell. 
-To execute it, please set the environment variable *JAVA_HOME* first by typing the 
+JoanAudit is a single executable *.jar*-File that can be executed right from a shell.
+To execute it, please set the environment variable *JAVA_HOME* first by typing the
 following command:
 
 ``` bash
@@ -279,9 +281,9 @@ java -jar JoanAudit.jar -h
 The following table explains the meaning of the different options that can be configured:
 
 
-| biofuzz-tk (short/ long option)        | meaning | 
-| :---------------------------------------------------- | :--------------------------| 
-|-arch,--archivepath <arch>   | Path to the jar file to test for security vulnerabilites - note that this does not work for ear/war (extract them first and use the dir option) | 
+| biofuzz-tk (short/ long option)        | meaning |
+| :---------------------------------------------------- | :--------------------------|
+|-arch,--archivepath <arch>   | Path to the jar file to test for security vulnerabilites - note that this does not work for ear/war (extract them first and use the dir option) |
 | -cfg,--config <cfg>        |  Path to the JoanAudit configuration file in XML format. The basename has to be config.xml. You can work with xincludes.|
 | -cp,--classpath <cp>  |                      Classpath - multiple entries should be separated by ':' |
 | -dir,--directorypath <dir>   |               Path to the directory containing the java sources |
@@ -308,7 +310,7 @@ The Joana sources are available in the *./modules/joana* directory then. Let us 
 Every function can be defined as entrypint. Per default, JoanAudit searches for entrypoints that are configured in the *entrypoints.xml* section of the configuration file *config.xml*.
 
 ``` bash
-java -jar JoanAudit.jar -jbd ../modules/joana/ -arch foo.jar -lept -cfg config.xml -cp "lib.jar" 
+java -jar JoanAudit.jar -jbd ../modules/joana/ -arch foo.jar -lept -cfg config.xml -cp "lib.jar"
 ```
 
 The *jbd* option points the the location of the joana directory. The option *arch* is devoted to the JAR archive of the program to be analyzed. The *lept* options is usef for printing out all entrypoints that are present in the application. The generic entrypoints that are present in the configuraiton file are used as filters. The *cp*
@@ -323,7 +325,7 @@ ept: simple.Simple.doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/
 
 ## Printing potentially vulnerable paths
 
-With the entrypoints that were returned after launching the command above, we can analyze the program 
+With the entrypoints that were returned after launching the command above, we can analyze the program
 with the following command:
 
 ``` bash
@@ -365,4 +367,3 @@ JoanAudit is a "proof-of-concept" research prototype. If you find bugs or if you
 * [Joana Website](http://pp.ipd.kit.edu/projects/joana/)
 * [Joana Source Code](https://github.com/jgf/joana)
 * [Declassification/Lattice](http://www.cs.cornell.edu/andru/papers/robdecl-jcs.pdf)
-
