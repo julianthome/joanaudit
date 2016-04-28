@@ -366,4 +366,4 @@ JoanAudit is a "proof-of-concept" research prototype. If you find bugs or if you
 
 * [Joana Website](http://pp.ipd.kit.edu/projects/joana/)
 * [Joana Source Code](https://github.com/jgf/joana)
-* [Declassification/Lattice](http://www.cs.cornell.edu/andru/papers/robdecl-jcs.pdf)
+* [Declassification/Lattice](https://www.cs.cornell.edu/andru/papers/csfw04.pdf)
