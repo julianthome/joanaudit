@@ -1,6 +1,6 @@
 # JoanAudit
 
-:warning: We are currently working on a new release of JoanAudit which will be uploaded soon.
+:warning: We are currently working on a version of JoanAudit which will be uploaded soon.
 
 [Overview](#overview)
 
