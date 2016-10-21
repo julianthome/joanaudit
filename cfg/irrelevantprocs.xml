@@ -2,6 +2,6 @@
 	<proc pattern="java\.lang\.Exception.*"/>
 	<proc pattern="javax\.servet.*"/>
 	<proc pattern="org\.kamranzafar\.auth\.rs\.AuthResponse.*"/>
-	<proc pattern="java\.lang\.Throwable.*"/>"
+	<proc pattern="java\.lang\.Throwable.*"/>
 	<proc pattern="net\.sf\.regain\.util\.sharedtag\.*"/>
 </irrelevantprocs>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
-        <!-- Just include this to allow nodeset being a root attribute -->
+    <!-- Just include this to allow nodeset being a root attribute -->
     <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/03/xml.xsd"/>
     <xs:element name="configuration">
         <xs:complexType>
@@ -102,6 +102,26 @@
                     </xs:complexType>
                 </xs:element>
                 <!-- exclusions END -->
+                <!-- irrelevant BEGIN -->
+                <xs:element name="irrelevantprocs">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="proc" maxOccurs="unbounded"
+                                        minOccurs="0">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute type="xs:string" name="pattern"
+                                                          use="required"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute ref="xml:base"/>
+                    </xs:complexType>
+                </xs:element>
+                <!-- irrelevant END -->
                 <!-- entrypoints BEGIN -->
                 <xs:element name="entrypoints">
                     <xs:complexType>
