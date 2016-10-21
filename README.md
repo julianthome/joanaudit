@@ -1,14 +1,12 @@
 # JoanAudit
 
-:warning: We are currently working on a version of JoanAudit which will be uploaded soon.
-
 [Overview](#overview)
 
 [Directory Structure](#directory-structure)
 
 [Usage](#usage)
 
-[Configuration](#configuration)
+[Installation and Configuration](#installation_and_configuration)
 
 [Case Studies](#case-studies)
 
@@ -17,11 +15,13 @@
 [References](#references)
 
 
+:warning: We are currently working on a new version of JoanAudit which will be uploaded soon. We improved the scalability, automated fixing, and the report generation.
+
 # Overview
 
 JoanAudit is a program slicing tool for automatic extraction of security slices from Java Web programs. Security slices are concise and minimal pieces of code that are essential for auditing XML, XPath, and SQL injection--common and serious security issues for Web applications and Web services. It is based on the [Joana](http://pp.ipd.kit.edu/projects/joana/) framework which may be downloaded from [here](https://github.com/jgf/joana).
 
-<img src="https://github.com/julianthome/joanaudit/blob/master/img/tool.png" alt="Overview" width="400px" align="middle">
+![](https://www.dropbox.com/s/7yvzjmosomjg9ln/tool.png?dl=1)
 
 The general overview is depicted in the figure above. The user configures a lattice (a partial order relation)
 and provides a list of source, sink and declassifier bytecode signatures with their respective security levels.
@@ -42,35 +42,36 @@ vulnerable paths of a given program.
 
 The directories of this repository and their meaning are as follows:
 
-* bin/: The JoanAudit binary
 * cfg/: A sample configuration file. If you want to adjust JoanAudit to your needs, please add your own
-signatures. You can follow the examples present in the configuraiton files (*config.xml* is the
+signatures. You can follow the examples present in the configuration files (*config.xml* is the
 main configuration file).
 * modules/ : The Joana submodule
 
-# Configuration
+# Installation and Configuration
 
-
+Thie JoanAudit binary can be obtained from [here](https://www.dropbox.com/s/3dtkjzwu4ffa7cv/joanaudit.zip?dl=1)
 The configuration parts consists of several parts. The following XML file illustrates the different sections.
 
 ``` xml
 <!-- config.xml -->
 <configuration xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="config.xsd">
-        <xi:include href="sources.xml" />
-        <xi:include href="sinks.xml" />
-        <xi:include href="declassifiers.xml" />
-        <xi:include href="lattice.xml" />
-        <xi:include href="exclusions.xml" />
-        <xi:include href="entrypoints.xml" />
-        <xi:include href="classes.xml"/>
-        <xi:include href="autofix.xml"/>
+  <xi:include href="sources.xml" />
+  <xi:include href="sinks.xml" />
+  <xi:include href="declassifiers.xml" />
+  <xi:include href="lattice.xml" />
+  <xi:include href="exclusions.xml" />
+  <xi:include href="irrelevantprocs.xml" />
+  <xi:include href="entrypoints.xml" />
+  <xi:include href="classes.xml"/>
+  <xi:include href="autofix.xml"/>
 </configuration>
 ```
 
-As one can see, the main configuration file includes configurations for source, sink and declassfier signatures, a configuration
-part for the lattice, exclusion rules, i.e. a set of Java packages or classes that can be dropped during the SDG construction. Moreover,
+The main configuration file includes configurations for source, sink and declassifier signatures, a configuration
+part for the lattice, exclusion rules, i.e. a set of Java packages or classes that can be dropped during the SDG construction as well as
+irrelevant functions that are not traversed when performing the slicing. Moreover,
 the configuration includes a set of entrypoints, i.e. the starting points for SDG construction. The file *classes.xml* contains categories of sources, sinks, and declassifiers. If sources, sinks and declassifiers are connected by a path but do not belong
-to the same category, they are filtered out. The file *autofix.xml* contains mappings from sinks to declassifier and context patterns that a string that flows to a sink has to match in order to identify an appropriate declassifer to fix the vulnerability. The following subsections explain the different parts of the configuration in detail.
+to the same category, they are filtered out. The file *autofix.xml* contains mappings from sinks to declassifier and context patterns that a string that flows to a sink has to match in order to identify an appropriate declassifier to fix the vulnerability. The following subsections explain the different parts of the configuration in detail.
 
 ## Security Lattice
 
@@ -101,7 +102,7 @@ be used (*id*) and a short description text (*desc*). The *smeq* (smaller or equ
 </lattice>
 ```
 
-<img src="https://github.com/julianthome/joanaudit/blob/master/img/lattice.png" alt="Lattice" width="200px" align="middle">
+![](https://www.dropbox.com/s/swqeiolv8sryd5e/lattice.png?dl=1)
 
 ## Sources, Sinks, Declassifiers
 
@@ -175,7 +176,7 @@ that passes through the first parameter of *encodeForXPath()* from *LL* (non-con
 *LH* (confidential and untrusted). In other words, we are lowering the cautiousness of data that passes through the
 *encodeForXPath()* since it prevents malicious users from launching XPath attacks. *LH* data can be used more freely than *LL* data.
 
-## Exclusions
+## Exclusions and Irrelevant functions
 
 Exclusion rules are useful for improving scalability by reducing the SDG construction time. The following code snippet
 illustrates a sample configuration for excluding three packages from the SDG build process. You can also
@@ -189,6 +190,8 @@ exclude single classes. In the example below, two packages and one class are fil
 <!-- ... -->
 </exclusions>
 ```
+
+The configuration file for irrelevant functions is structured similarly. However, irrelevant procedures are kept in the SDG and are ignored in the slicing phase.
 
 ## Entrypoints
 
@@ -295,6 +298,8 @@ The following table explains the meaning of the different options that can be co
 | -lept,--list_entrypoints    |                List all possible entrypoints |
 | -sdgout,--sdg-out-file <outputfile>  |       Serialize the SDG to a file |
 | -pch,--print-class-hierarchy  |              Dump the class hierarchy|
+|-nvul,--num-of-vuln <nvul> |  number of vulnerabilities considered per source-sink pair |
+|-dcl,--with_declassification | use declassfication filter|
 
 Joana provides stubs for Java. Stubs are useful for reducing the SDG construction time. For getting the stubs please launch the following commands in the git repository.
 
@@ -303,17 +308,17 @@ git submodule init
 git submodule update
 ```
 
-The Joana sources are available in the *./modules/joana* directory then. Let us assume, one would like to analyze the JAR archive *foo.jar*, the following steps can be perfomed:
+The Joana sources are available in the *./modules/joana* directory then. Let us assume, one would like to analyze the JAR archive *foo.jar*, the following steps can be performed:
 
 ## Listing possible entrypoints
 
-Every function can be defined as entrypint. Per default, JoanAudit searches for entrypoints that are configured in the *entrypoints.xml* section of the configuration file *config.xml*.
+Every function can be defined as entrypoint. Per default, JoanAudit searches for entrypoints that are configured in the *entrypoints.xml* section of the configuration file *config.xml*.
 
 ``` bash
 java -jar JoanAudit.jar -jbd ../modules/joana/ -arch foo.jar -lept -cfg config.xml -cp "lib.jar"
 ```
 
-The *jbd* option points the the location of the joana directory. The option *arch* is devoted to the JAR archive of the program to be analyzed. The *lept* options is usef for printing out all entrypoints that are present in the application. The generic entrypoints that are present in the configuraiton file are used as filters. The *cp*
+The *jbd* option points the the location of the joana directory. The option *arch* is devoted to the JAR archive of the program to be analyzed. The *lept* options is used for printing out all entrypoints that are present in the application. The generic entrypoints that are present in the configuration file are used as filters. The *cp*
 option is used for defining libraries that have to be or that should be included for constructing the SDG. In case
 of multiple libraries, one can separate them using *':'*. A possible output from JoanAudit might look as follows:
 
@@ -329,7 +334,7 @@ With the entrypoints that were returned after launching the command above, we ca
 with the following command:
 
 ``` bash
-java -jar JoanAudit.jar -jbd ../modules/joana/ -arch foo.jar -ept "simple.Simple.doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" -cfg config.xml -cp "lib.jar"
+java -jar JoanAudit.jar -jbd ../modules/joana/ -arch foo.jar -ept "simple.Simple.doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" -cfg config.xml -cp "lib.jar" -dcl -nvul 1
 ```
 
 JoanAudit might produce the following output:
