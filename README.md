@@ -150,8 +150,7 @@ In the example above, the return value of *getParameter()* is supposed to be lab
 
 The configuration for sinks listed below looks exactly the same as compared to the
 configuration of sources, and the only difference is the value of the *id*
-which is *sinks* instead of *sources*. In the example below, we label the whole call entry
-of *XPath.evaluate()* with the security label HH.
+which is *sinks* instead of *sources*. In the example below, we label the first parameter of *XPath.evaluate()* with the security label HH.
 
 ``` xml
 <!-- sinks.xml -->
@@ -351,7 +350,7 @@ PATH BEGIN------------------------------------------
 PATH END--------------------------------------------
 ```
 
-JoanAudit reports the complete Path, Condition, Control Dependencies (CtrlDeps) and Calls in sequences of line numbers. If there is a scope change (calls that lead the execution to another class), the target class is highlighted in brackets *[]*.
+JoanAudit reports the complete Path, Condition, Control Dependencies and Calls in sequences of line numbers. If there is a scope change (calls that lead the execution to another class), the target class is highlighted in brackets *[]*.
 
 # Test subjects
 
