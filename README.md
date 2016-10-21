@@ -19,8 +19,8 @@
 
 # Overview
 
-JoanAudit is a program slicing tool for automatic extraction of security slices from Java Web programs. Security slices are concise and minimal pieces of code that are essential for auditing XML, XPath, and SQL injection--common and serious security issues for Web applications and Web services. JoanAudit is based on the [Joana](http://pp.ipd.kit.edu/projects/joana/) framework which may be downloaded from [here](https://github.com/jgf/joana). The JoanAudit binary
-itself can be downloaded from [here](https://www.dropbox.com/s/3dtkjzwu4ffa7cv/joanaudit.zip?dl=1).
+JoanAudit is a program slicing tool for automatic extraction of security slices from Java Web programs. Security slices are concise and minimal pieces of code that are essential for auditing XML, XPath, and SQL injection--common and serious security issues for Web applications and Web services. JoanAudit is based on the [Joana](http://pp.ipd.kit.edu/projects/joana/) framework which may be downloaded from [here](https://github.com/jgf/joana); the JoanAudit binary
+can be downloaded from [here](https://www.dropbox.com/s/3dtkjzwu4ffa7cv/joanaudit.zip?dl=1).
 
 ![](https://www.dropbox.com/s/7yvzjmosomjg9ln/tool.png?dl=1)
 
