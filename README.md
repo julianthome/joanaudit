@@ -4,9 +4,9 @@
 
 [Directory Structure](#directory-structure)
 
-[Usage](#usage)
+[Installation and Usage](#installation_and_usage)
 
-[Installation and Configuration](#installation_and_configuration)
+[Configuration](#configuration)
 
 [Case Studies](#case-studies)
 
@@ -19,7 +19,7 @@
 
 # Overview
 
-JoanAudit is a program slicing tool for automatic extraction of security slices from Java Web programs. Security slices are concise and minimal pieces of code that are essential for auditing XML, XPath, and SQL injection--common and serious security issues for Web applications and Web services. It is based on the [Joana](http://pp.ipd.kit.edu/projects/joana/) framework which may be downloaded from [here](https://github.com/jgf/joana).
+JoanAudit is a program slicing tool for automatic extraction of security slices from Java Web programs. Security slices are concise and minimal pieces of code that are essential for auditing XML, XPath, and SQL injection--common and serious security issues for Web applications and Web services. JoanAudit is based on the [Joana](http://pp.ipd.kit.edu/projects/joana/) framework which may be downloaded from [here](https://github.com/jgf/joana).
 
 ![](https://www.dropbox.com/s/7yvzjmosomjg9ln/tool.png?dl=1)
 
@@ -47,10 +47,15 @@ signatures. You can follow the examples present in the configuration files (*con
 main configuration file).
 * modules/ : The Joana submodule
 
-# Installation and Configuration
+# Configuration
 
-Thie JoanAudit binary can be obtained from [here](https://www.dropbox.com/s/3dtkjzwu4ffa7cv/joanaudit.zip?dl=1)
-The configuration parts consists of several parts. The following XML file illustrates the different sections.
+This section explains the JoanAudit configuration file. The default
+configuration should be sufficient
+for the majority of use cases. For the purpose of tailoring JoanAudit to the
+application under test, one might want to add sources, sinks and declassifiers
+(sanitization functions) to their respective configuration files
+(`sources.xml`, `sinks.xml` and `declassifiers.xml`). The following XML file
+illustrates the different sections.
 
 ``` xml
 <!-- config.xml -->
@@ -76,13 +81,15 @@ to the same category, they are filtered out. The file *autofix.xml* contains map
 ## Security Lattice
 
 The security lattice is used for information flow analysis. More specifically, it is used to augment
-parts of the SDG with security label for the purpose of performing IFC on potentially sensitive paths (from sources through declassifiers to sinks). We are using IFC to filter out those paths that can be considered as secure based on the IFC analysis.
+parts of the SDG with security label for the purpose of performing IFC on potentially sensitive paths (from sources through declassifiers to sinks). We are using IFC to filter out those paths that can be considered as secure.
 
 A lattice is a partial ordered set of security levels. The configuration file *lattice.xml* illustrates the configuration of a [diamond lattice](http://www.cs.cornell.edu/andru/papers/robdecl-jcs.pdf) as depicted in the figure below. The root tag *lattice* contains
 *levels* subtags that define the different security levels of the lattice, whereas the
-*relation>* tag contains the relations between them. Each *level* tag contains the name of the security level to
+*relations* tag contains the relations between them. Each *level* tag contains the name of the security level to
 be used (*id*) and a short description text (*desc*). The *smeq* (smaller or equals) tags refer to the
 *id's* that are being used in the *id* attributes of the *level* tags. The attribute *lhs* stands for left hand side (the left side of the smaller or equals operation) whereas *lhs* is the left hand side. The partial order relation based on the configuration flow is highlighted in the lattice figure.
+The levels that are then used to assign a label to sources, sinks and
+declassifiers in their respective configuration files.
 
 ``` xml
 <!-- lattice xml -->
@@ -259,26 +266,27 @@ JoanAudit tries to infer the string that reaches a sink by using a simple form o
 </autofix>
 ```
 
-# Usage
+# Installation and Usage
 
-JoanAudit is a single executable *.jar*-File that can be executed right from a shell.
-To execute it, please set the environment variable *JAVA_HOME* first by typing the
-following command:
+The JoanAudit binary can be obtained from [here](https://www.dropbox.com/s/3dtkjzwu4ffa7cv/joanaudit.zip?dl=1).
+
+The tool is a single, self-contained executable *.jar*-File that can be executed from the command line.
+Before running it, please set the environment variable *JAVA_HOME* with the following command:
 
 ``` bash
 export JAVA_HOME="<path>"
 ```
 
-After that, one can execute JoanAudit by typing:
+The tool can be executed with the following command:
 
 ``` bash
-java -jar JoanAudit.jar <options>
+java -jar joanaudit.jar <options>
 ```
 
 For looking at the different command line options provided by JoanAudit, please type the following command:
 
 ``` bash
-java -jar JoanAudit.jar -h
+java -jar joanaudit.jar -h
 ```
 
 The following table explains the meaning of the different options that can be configured:
