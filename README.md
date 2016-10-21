@@ -45,7 +45,7 @@ The structure of this repository is explained in the following:
 * cfg/: A sample configuration file. If you want to adapt JoanAudit to your needs, please add your own
 signatures. You can follow the examples present in the configuration files (*config.xml* is the
 main configuration file).
-* modules/ : The Joana submodule
+* modules/ : The Joana submodule on which JoanAudit is based on
 
 # Configuration
 
@@ -308,21 +308,14 @@ The following table explains the meaning of the different options that can be co
 |-nvul,--num-of-vuln <nvul> |  number of vulnerabilities considered per source-sink pair |
 |-dcl,--with_declassification | use declassfication filter|
 
-Joana provides stubs for Java. Stubs are useful for reducing the SDG construction time. For getting the stubs please launch the following commands in the git repository.
 
-``` bash
-git submodule init
-git submodule update
-```
-
-The Joana sources are available in the *./modules/joana* directory then. Let us assume, one would like to analyze the JAR archive *foo.jar*, the following steps can be performed:
 
 ## Listing possible entrypoints
 
 Every function can be defined as entrypoint. JoanAudit searches for entrypoints that are configured in the *entrypoints.xml* section of the configuration file *config.xml*.
 
 ``` bash
-java -jar JoanAudit.jar -jbd ../modules/joana/ -arch foo.jar -lept -cfg config.xml -cp "lib.jar"
+java -jar joanaudit.jar -arch foo.jar -lept -cfg config.xml -cp "lib.jar"
 ```
 
 The *jbd* option points the the location of the joana directory. The option *arch* is devoted to the JAR archive of the program to be analyzed. The *lept* options is used for printing out all entrypoints that are present in the application. The generic entrypoints that are present in the configuration file are used as filters. The *cp*
@@ -341,7 +334,7 @@ With the entrypoints that were returned after launching the command above, we ca
 with the following command:
 
 ``` bash
-java -jar JoanAudit.jar -jbd ../modules/joana/ -arch foo.jar -ept "simple.Simple.doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" -cfg config.xml -cp "lib.jar" -dcl -nvul 1
+java -jar joanaudit.jar -arch foo.jar -ept "simple.Simple.doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" -cfg config.xml -cp "lib.jar" -dcl -nvul 1
 ```
 
 JoanAudit might produce the following output:
