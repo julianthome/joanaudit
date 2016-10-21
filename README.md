@@ -46,7 +46,7 @@ The structure of this repository is explained in the following:
 * cfg/: A sample configuration file. If you want to adapt JoanAudit to your needs, please add your own
 signatures. You can follow the examples present in the configuration files (*config.xml* is the
 main configuration file).
-* modules/ : The Joana submodule on which JoanAudit is based on
+* modules/ : The Joana version on which JoanAudit is based on
 
 # Configuration
 
