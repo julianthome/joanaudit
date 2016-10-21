@@ -129,7 +129,7 @@ for a single source. The top element for all configuration files (for sinks, sou
 the *nodeset* tag. This tag may contain multiple *category* tags. Sources, sinks and declassifiers
 are categorized which has two advantages:
 
-- We can just consider sources/sinks and declassifiers that belong to the same class.
+- We can just consider sources/sinks and declassifiers that belong to the same category.
 - We can create profiles for applications. If a developer has some knowledge about the internals of the application (which is usually the case), he may just consider those classes of sources, sinks
 and declassifiers that are of interest to him.
 
@@ -233,10 +233,9 @@ to an SQL sink like *executeQuery()* cannot be considered as safe.
 
 The second reason for using categories is to allow security auditors to profile the application under test. If you have a rich set of sources, sinks and declassifiers, auditors do not want to create a new configuration for each
 application. They can use categories instead, to focus their auditing task just on particular sources, sinks and
-can leave out all functions that are known to be secure. In the configuration
-below
-sources of the category *src_pt* (as configured in *sources.xml*), declassifiers of the category *dcl_xi* (as configured in *declassifiers.xml*), and sinks of the category *snk_xi*
-should be matched.
+can leave out all functions that are known to be secure. According to the
+configuration snippet below, only
+sources of the category *src_pt* (as configured in *sources.xml*), declassifiers of the category *dcl_xi* (as configured in *declassifiers.xml*), and sinks of the category *snk_xi* are matched.
 
 ``` xml
 <!-- classes.xml -->
