@@ -4,7 +4,7 @@
 
 [Directory Structure](#directory-structure)
 
-[Installation and Usage](#installation_and_usage)
+[Installation and Usage](#installation-and-usage)
 
 [Configuration](#configuration)
 
@@ -141,7 +141,8 @@ is assigned to a specific part of the same signature (*parlabel*). The *parlabel
 
 * return: Return node of the function is labeled.
 * all: The whole function entry is labeled.
-* [0-9]: Actual parameter with the given number is labeled (first actual parameter has index 1).
+* [0-9]: Actual parameter with the given number is labeled (first actual parameter for member functions has index 1 whereas the first parameter
+  for static methods is 0).
 * security-level : The security label that is being used for the selected part. The configuration of this
   part is dependent on the lattice configuration where security levels can be freely defined in the
   *id* attribute of the *level* tag. In our diamond lattice example, security-level could be one of LL, HH, LH or HL.
