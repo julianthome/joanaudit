@@ -8,7 +8,7 @@
 
 [Configuration](#configuration)
 
-[Case Studies](#case-studies)
+[Testsubjects](#testsubjects)
 
 [Notes](#notes)
 
@@ -362,7 +362,7 @@ PATH END--------------------------------------------
 
 JoanAudit reports the complete Path, Condition, Control Dependencies (CtrlDeps) and Calls in sequences of line numbers. If there is a scope change (calls that lead the execution to another class), the target class is highlighted in brackets *[]*.
 
-# Case Studies
+# Testsubjects
 
 In our experiments, we evaluated JoanAudit on the following test subjects:
 
