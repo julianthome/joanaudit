@@ -6,6 +6,7 @@
 	<xi:include href="declassifiers.xml" />
 	<xi:include href="lattice.xml" />
 	<xi:include href="exclusions.xml" />
+	<xi:include href="irrelevantprocs.xml" />
 	<xi:include href="entrypoints.xml" />
 	<xi:include href="classes.xml"/>
 	<xi:include href="autofix.xml"/>

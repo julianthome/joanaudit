@@ -1,42 +1,49 @@
 <classes>
-    <!-- What do we like to match (sources/sinks/declassifiers) -->
-    <class desc="xpath injection">
+    <class desc="xpati">
         <elem name="src_pt"/>
         <elem name="dcl_xi"/>
         <elem name="snk_xi"/>
     </class>
-    <class desc="sql injection">
-        <elem name="src_pt"/>
-        <elem name="dcl_prep"/>
-        <elem name="snk_prep"/>
-    </class>
-    <class desc="sql injection">
+
+    <class desc="sqli">
+        <elem name="src_cp"/>
         <elem name="src_pt"/>
         <elem name="dcl_sqli"/>
         <elem name="snk_sqli"/>
+        <elem name="dcl_prep"/>
+        <elem name="snk_prep"/>
+        <elem name="snk_sqli"/>
     </class>
-    <class desc="xml injection">
+
+    <class desc="xmli">
         <elem name="src_pt"/>
         <elem name="dcl_xml"/>
         <elem name="snk_xml"/>
     </class>
-    <!--<class desc="command execution">
+
+    <class desc="command execution">
         <elem name="src_pt"/>
         <elem name="snk_ce"/>
-    </class
-    <class desc="html injection">
+    </class>
+
+    <class desc="xss">
+        <elem name="src_ss"/>
         <elem name="src_pt"/>
         <elem name="dcl_html"/>
+        <elem name="dcl_xss"/>
         <elem name="dcl_xml"/>
+        <elem name="dcl_enc"/>
         <elem name="snk_xss"/>
     </class>
+
     <class desc="class loading">
         <elem name="src_pt"/>
         <elem name="snk_cll"/>
     </class>
-    <class desc="information leakage">
+
+    <class desc="ldapi">
         <elem name="src_pt"/>
-        <elem name="dcl_enc"/>
-        <elem name="snk_il"/>
-    </class>-->
+        <elem name="dcl_li"/>
+        <elem name="snk_li"/>
+    </class>
 </classes>

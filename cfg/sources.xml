@@ -1,5 +1,72 @@
 <nodeset id="sources">
 	<category name="parameter tampering" abbreviation="src_pt">
+
+		<node name="org.kamranzafar.auth.rs.ldap.LdapAuthService.authenticate(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/kamranzafar/auth/rs/AuthResponse;"
+			  parlabels="1(LL),2(LL),3(LL)"/>
+
+		<node name="ConfigurationRecord.getElementValue(Ljava/lang/String;)Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+
+		<node name="pt.uc.dei.wsvdbench.tpcapp.input.ProductDetailInput.getItemIds()Ljava/util/List;"
+			  parlabels="return(LL)"/>
+
+		<node name="pt.uc.dei.wsvdbench.tpcapp.input.NewCustomerInput.getBillingAddr1()Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+
+		<node name="pt.uc.dei.wsvdbench.tpcapp.input.NewCustomerInput.getBillingAddr2()Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+
+		<node name="pt.uc.dei.wsvdbench.tpcapp.input.NewCustomerInput.getBillingCity()Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+
+		<node name="pt.uc.dei.wsvdbench.tpcapp.input.NewCustomerInput.getBillingState()Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+
+		<node name="pt.uc.dei.wsvdbench.tpcapp.input.NewCustomerInput.getBillingZip()Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+
+		<node name="pt.uc.dei.wsvdbench.tpcapp.input.NewProductsInput.getSubjectString()Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+
+		<node name="pt.uc.dei.wsvdbench.tpcapp.input.ChangePaymentMethodInput.getPaymentMethod()Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+
+		<node name="pt.uc.dei.wsvdbench.tpcapp.input.ChangePaymentMethodInput.getCreditInfo()Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+
+		<node name="pt.uc.dei.wsvdbench.tpcapp.input.ChangePaymentMethodInput.getPoId()Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+
+		<node name="pt.uc.dei.wsvdbench.tpcapp.input.ChangePaymentMethodInput.getCustomerId()Ljava/lang/Long;"
+			  parlabels="return(LL)"/>
+
+		<node name="Tpcc.getParameter(Ljava/lang/String;)Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+
+		<node name="Tpcc.getParameter()Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+
+		<node name="Tpcc.getParameter()I"
+			  parlabels="return(LL)"/>
+
+		<node name="Tpcc.getLongParameter()J"
+			  parlabels="return(LL)"/>
+
+		<node name="Tpcw.getParameter()Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+
+		<node name="Tpcw.getParameter()I"
+			  parlabels="return(LL)"/>
+
+		<node name="Tpcw.getIntParameter()I"
+			  parlabels="return(LL)"/>
+
+		<node name="Tpcw.getLongParameter()J"
+			  parlabels="return(LL)"/>
+
+		<node name="javax.swing.JTextField.getDocument()Ljavax/swing/text/Document;"
+			  parlabels="return(LL)"/>
+
 		<node
 				name="javax.servlet.ServletRequest.getParameter(Ljava/lang/String;)Ljava/lang/String;"
 				parlabels="return(LL)"/>
@@ -24,9 +91,12 @@
 		<node
 				name="javax.servlet.http.HttpServletRequest.getCookies()LLjavax.servlet.http.Cookie;"
 				parlabels="return(LL)" />
+
+
+		<!-- Roller -->
 		<node
 				name="javax.servlet.http.HttpServletRequest.getParameter(Ljava/lang/String;)Ljava/lang/String;"
-				parlabels="return(LL)"/>
+				parlabels="return(LL)" />
 		<node
 				name="javax.servlet.ServletRequestWrapper.getParameter(Ljava/lang/String;)Ljava/lang/String;"
 				parlabels="return(LL)"/>
@@ -45,15 +115,19 @@
 			  parlabels="return(LL)"/>
 
 		<node name="org.apache.roller.weblogger.pojos.Weblog.getName()Ljava/lang/String;"
-			  parlabels="all(LL)"/>
+			  parlabels="return(LL)"/>
 		<node name="org.apache.roller.weblogger.pojos.Weblog.getTagline()Ljava/lang/String;"
-			  parlabels="all(LL)"/>
+			  parlabels="return(LL)"/>
 		<node name="org.apache.roller.weblogger.pojos.Weblog.getEmailAddress()Ljava/lang/String;"
-			  parlabels="all(LL)"/>
+			  parlabels="return(LL)"/>
 		<node name="org.apache.roller.weblogger.pojos.WeblogEntryComment.getContent()Ljava/lang/String;"
-			  parlabels="all(LL)"/>
+			  parlabels="return(LL)"/>
+		<node name="org.apache.roller.weblogger.pojos.WeblogEntryComment.getId()Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+
 		<node name="org.apache.roller.weblogger.config.WebloggerRuntimeConfig.getProperty(Ljava/lang/String;)Ljava/lang/String;"
-			  parlabels="all(LL)"/>
+			  parlabels="return(LL)"/>
+
 		<node name="java.lang.System.getProperties()Ljava/util/Properties;"
 			  parlabels="return(HL)"/>
 
@@ -64,7 +138,7 @@
 
 		<node name="net.sourceforge.pebble.util.SecurityUtils.main([Ljava/lang/String;)V" parlabels="all(LH)"/>
 		<node name="javax.servlet.ServletRequestWrapper.getInputStream()Ljavax/servlet/ServletInputStream;"
-			  parlabels="all(LL)"/>
+			  parlabels="return(LL)"/>
 
 		<node
 				name="org.apache.xmlrpc.XmlRpcServer.execute(Ljava/io/InputStream;)[B"
@@ -78,11 +152,24 @@
 			  parlabels="0(LL)"/>
 
 		<node name="PubSubHubbub.Subscriber.subscribe(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)I"
-			  parlabels="0(LL)"/>
-		<node name="org.apache.http.client.methods.HttpPost.&lt;init&gt;(Ljava/lang/String;)V" parlabels="all(LL)"/>
-		<node name="org.apache.http.client.methods.HttpGet.&lt;init&gt;(Ljava/lang/String;)V" parlabels="all(LL)"/>
+			  parlabels="0(LL),1(LL),2(LL),3(LL),4(LL)"/>
+		<node name="org.apache.http.client.methods.HttpPost.&lt;init&gt;(Ljava/lang/String;)V" parlabels="0(LL)"/>
+		<node name="org.apache.http.client.methods.HttpGet.&lt;init&gt;(Ljava/lang/String;)V" parlabels="0(LL)"/>
 		<node name="net.sf.regain.util.sharedtag.taglib.JspPageRequest.getParameter(Ljava/lang/String;)Ljava/lang/String;"
 				parlabels="return(LL)"/>
+
+		<!--<node name="net.sf.regain.search.results.SearchResultsImpl.getHitDocument(I)Lorg/apache/lucene/document/Document;" parlabels="return(LL)"/>-->
+
+		<node name="net.sf.regain.search.SearchToolkit.getCompressedFieldValue(Lorg/apache/lucene/document/Document;Ljava/lang/String;)Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+
+	</category>
+
+	<category name="second order" abbreviation="src_ss">
+		<node name="java.sql.ResultSet.getString(I)Ljava/lang/String;"
+			  parlabels="return(LL)"/>
+		<node name="java.sql.ResultSet.getInt(I)I"
+			  parlabels="return(LL)"/>
 	</category>
 
 	<category name="header manipulation" abbreviation="src_hm">
@@ -150,10 +237,10 @@
 			  parlabels="return(LL)"/>
 	</category>
 
-	<category name="non deterministic" abbreviation="src_nd">
+	<!--<category name="non deterministic" abbreviation="src_nd">
 		<node name="java.util.Calendar.getTime()Ljava/util/Date;"
 			  parlabels="return(HL)"/>
-	</category>
+	</category>-->
 
 
 </nodeset>
