@@ -19,8 +19,9 @@
 
 # Overview
 
-JoanAudit is a program slicing tool for automatic extraction of security slices from Java Web programs. Security slices are concise and minimal pieces of code that are essential for auditing XML, XPath, and SQL injection--common and serious security issues for Web applications and Web services. JoanAudit is based on the [Joana](http://pp.ipd.kit.edu/projects/joana/) framework which may be downloaded from [here](https://github.com/jgf/joana); the JoanAudit binary
-can be downloaded from [here](https://www.dropbox.com/s/3dtkjzwu4ffa7cv/joanaudit.zip?dl=1).
+JoanAudit is a program slicing tool for automatic extraction of security slices from Java Web programs. Security slices are concise and minimal pieces of code that are essential for auditing XML, XPath, and SQL injection--common and serious security issues for Web applications and Web services. JoanAudit is based on the [Joana](http://pp.ipd.kit.edu/projects/joana/) framework which may be downloaded from [here](https://github.com/jgf/joana).
+For requesting access to the JoanAudit executable, please send an email to
+julian.thome@uni.lu.
 
 ![](https://www.dropbox.com/s/7yvzjmosomjg9ln/tool.png?dl=1)
 
@@ -267,7 +268,8 @@ JoanAudit tries to infer the string that reaches a sink by and computes the cont
 
 # Installation and Usage
 
-The JoanAudit binary can be obtained from [here](https://www.dropbox.com/s/3dtkjzwu4ffa7cv/joanaudit.zip?dl=1).
+For requesting access to the JoanAudit executable, please send an email to
+julian.thome@uni.lu.
 
 The tool is a single, self-contained jar-File that can be executed from the command line.
 Before running it, please set the environment variable *JAVA_HOME* with the following command:
@@ -363,9 +365,6 @@ In our experiments, we evaluated JoanAudit on the following test subjects:
 * [Pebble 2.6.4](http://pebble.sourceforge.net/)
 * [Regain 2.1.0](http://regain.sourceforge.net/download.php?lang=de)
 
-# Notes
-
-JoanAudit is a "proof-of-concept" research prototype. If you find bugs or if you have suggestions how to improve it, please send an e-mail to julian.thome@uni.lu.
 
 # References
 
