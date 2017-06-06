@@ -1,0 +1,67 @@
+{
+  "entrypoints": [
+    {
+      "prefix": "",
+      "suffix": [
+        "main([Ljava/lang/String;)V"
+      ]
+    },
+    {
+      "prefix": "javax.servlet.http.HttpServlet",
+      "suffix": [
+        "doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V",
+        "doGet(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V",
+        "service(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V"
+      ]
+    },
+    {
+      "prefix": "org.owasp.webgoat.lessons.LessonAdapter",
+      "suffix": [
+        "createContent(Lorg/owasp/webgoat/session/WebSession;)Lorg/apache/ecs/Element;",
+        "createWorkspaceContent(Lorg/owasp/webgoat/session/WebSession;)Lorg/apache/ecs/Element;"
+      ]
+    },
+    {
+      "prefix": "org.eclipse.jetty.server.handler.AbstractHandler",
+      "suffix": [
+        "org.eclipse.jetty.server.handler.AbstractHandler.handle(Ljava/lang/String;Lorg/eclipse/jetty/server/Request;Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V"
+      ]
+    },
+    {
+      "prefix": "org.apache.stratos.cli.GenericRestClient",
+      "suffix": [
+        "doPost(Lorg/apache/http/impl/client/DefaultHttpClient;Ljava/lang/String;Ljava/lang/String;)Lorg/apache/http/HttpResponse;",
+        "doGet(Lorg/apache/http/impl/client/DefaultHttpClient;Ljava/lang/String;Ljava/lang/String;)Lorg/apache/http/HttpResponse;",
+        "doDelete(Lorg/apache/http/impl/client/DefaultHttpClient;Ljava/lang/String;Ljava/lang/String;)Lorg/apache/http/HttpResponse;",
+        "doPut(Lorg/apache/http/impl/client/DefaultHttpClient;Ljava/lang/String;Ljava/lang/String;)Lorg/apache/http/HttpResponse;"
+      ]
+    },
+    {
+      "prefix": "PubSubHubbub.Subscriber",
+      "suffix": [
+        "subscribe(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)I",
+        "unsubscribe(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)I"
+      ]
+    },
+    {
+      "prefix": "Published.Publisher",
+      "suffix": [
+        "execute(Ljava/lang/String;Ljava/lang/String;)I"
+      ]
+    },
+    {
+      "prefix": "Published.Discovery",
+      "suffix": [
+        "getContents(Ljava/lang/String;Ljava/lang/String;)I",
+        "getHub(Ljava/lang/String;)Ljava/lang/String;",
+        "hasHub(Lorg/w3c/dom/Document;)Ljava/lang/String;"
+      ]
+    },
+    {
+      "prefix": "net.sf.regain.search.sharedlib.ListTag",
+      "suffix": [
+        "printStartTag(Lnet/sf/regain/util/sharedtag/PageRequest;Lnet/sf/regain/util/sharedtag/PageResponse;)I"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,354 @@
+{
+  "sources": [
+    {
+      "category": "parameter tampering",
+      "tag": "src_pt",
+      "sig": [
+        {
+          "name": "org.kamranzafar.auth.rs.ldap.LdapAuthService.authenticate(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/kamranzafar/auth/rs/AuthResponse;",
+          "labels": "1(LL),2(LL),3(LL)"
+        },
+        {
+          "name": "ConfigurationRecord.getElementValue(Ljava/lang/String;)Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "pt.uc.dei.wsvdbench.tpcapp.input.ProductDetailInput.getItemIds()Ljava/util/List;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "pt.uc.dei.wsvdbench.tpcapp.input.NewCustomerInput.getBillingAddr1()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "pt.uc.dei.wsvdbench.tpcapp.input.NewCustomerInput.getBillingAddr2()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "pt.uc.dei.wsvdbench.tpcapp.input.NewCustomerInput.getBillingCity()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "pt.uc.dei.wsvdbench.tpcapp.input.NewCustomerInput.getBillingState()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "pt.uc.dei.wsvdbench.tpcapp.input.NewCustomerInput.getBillingZip()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "pt.uc.dei.wsvdbench.tpcapp.input.NewProductsInput.getSubjectString()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "pt.uc.dei.wsvdbench.tpcapp.input.ChangePaymentMethodInput.getPaymentMethod()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "pt.uc.dei.wsvdbench.tpcapp.input.ChangePaymentMethodInput.getCreditInfo()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "pt.uc.dei.wsvdbench.tpcapp.input.ChangePaymentMethodInput.getPoId()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "pt.uc.dei.wsvdbench.tpcapp.input.ChangePaymentMethodInput.getCustomerId()Ljava/lang/Long;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "Tpcc.getParameter(Ljava/lang/String;)Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "Tpcc.getParameter()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "Tpcc.getParameter()I",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "Tpcc.getLongParameter()J",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "Tpcw.getParameter()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "Tpcw.getParameter()I",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "Tpcw.getIntParameter()I",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "Tpcw.getLongParameter()J",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.swing.JTextField.getDocument()Ljavax/swing/text/Document;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.ServletRequest.getParameter(Ljava/lang/String;)Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.ServletRequest.getParameterValues(Ljava/util/String;)LLjava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.ServletRequest.getParameterMap()Ljava/util/Map;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.ServletRequest.getParameterNames()Ljava/util/Enumeration;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.http.HttpServletRequest.getRequestedSessionId()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.http.HttpServletRequest.getQueryString()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.http.HttpServletRequest.getRemoteUser()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.http.HttpServletRequest.getCookies()LLjavax.servlet.http.Cookie;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.http.HttpServletRequest.getParameter(Ljava/lang/String;)Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.ServletRequestWrapper.getParameter(Ljava/lang/String;)Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "org.owasp.webgoat.session.ParameterParser.getRawParameter(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "org.owasp.webgoat.session.ParameterParser.getStringParameter(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "org.owasp.webgoat.session.ParameterParser.getIntParameter(Ljava/lang/String;)I",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "org.owasp.webgoat.session.ParameterParser.getParameterValues(Ljava/lang/String;)[Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.http.HttpServletRequest.getInputStream()Ljavax/servlet/ServletInputStream;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "org.apache.roller.weblogger.pojos.Weblog.getName()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "org.apache.roller.weblogger.pojos.Weblog.getTagline()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "org.apache.roller.weblogger.pojos.Weblog.getEmailAddress()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "org.apache.roller.weblogger.pojos.WeblogEntryComment.getContent()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "org.apache.roller.weblogger.pojos.WeblogEntryComment.getId()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "org.apache.roller.weblogger.config.WebloggerRuntimeConfig.getProperty(Ljava/lang/String;)Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "java.lang.System.getProperties()Ljava/util/Properties;",
+          "labels": "return(HL)"
+        },
+        {
+          "name": "org.apache.abdera.protocol.server.ResponseContext.getHeaders(Ljava/lang/String;)[Ljava/lang/Object;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.http.HttpSession.getId()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "net.sourceforge.pebble.util.SecurityUtils.main([Ljava/lang/String;)V",
+          "labels": "all(LH)"
+        },
+        {
+          "name": "javax.servlet.ServletRequestWrapper.getInputStream()Ljavax/servlet/ServletInputStream;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "org.apache.xmlrpc.XmlRpcServer.execute(Ljava/io/InputStream;)[B",
+          "labels": "return(HL)"
+        },
+        {
+          "name": "org.springframework.security.authentication.encoding.PasswordEncoder.encodePassword(Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/String;",
+          "labels": "0(LL)"
+        },
+        {
+          "name": "org.apache.stratos.cli.CliTool.handleConsoleInputs([Ljava/lang/String;)V",
+          "labels": "0(LL)"
+        },
+        {
+          "name": "PubSubHubbub.Subscriber.subscribe(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)I",
+          "labels": "0(LL),1(LL),2(LL),3(LL),4(LL)"
+        },
+        {
+          "name": "org.apache.http.client.methods.HttpPost.<init>(Ljava/lang/String;)V",
+          "labels": "0(LL)"
+        },
+        {
+          "name": "org.apache.http.client.methods.HttpGet.<init>(Ljava/lang/String;)V",
+          "labels": "0(LL)"
+        },
+        {
+          "name": "net.sf.regain.util.sharedtag.taglib.JspPageRequest.getParameter(Ljava/lang/String;)Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "net.sf.regain.search.SearchToolkit.getCompressedFieldValue(Lorg/apache/lucene/document/Document;Ljava/lang/String;)Ljava/lang/String;",
+          "labels": "return(LL)"
+        }
+      ]
+    },
+    {
+      "category": "second order",
+      "tag": "src_ss",
+      "sig": [
+        {
+          "name": "java.sql.ResultSet.getString(I)Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "java.sql.ResultSet.getInt(I)I",
+          "labels": "return(LL)"
+        }
+      ]
+    },
+    {
+      "category": "header manipulation",
+      "tag": "src_hm",
+      "sig": [
+        {
+          "name": "javax.servlet.ServletRequest.getScheme()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.ServletRequest.getProtocol()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.ServletRequest.getContentType()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.ServletRequest.getServerName()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.ServletRequest.getRemoteAddr()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.ServletRequest.getRemoteHost()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.ServletRequest.getRealPath()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.ServletRequest.getLocalName()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.ServletRequest.getLocalAddr()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.ServletRequest.getAuthType()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.ServletRequest.getRequestDispatcher(Ljava/lang/String;)Ljavax/servlet/RequestDispatcher;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.http.HttpServletRequest.getMethod()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.http.HttpServletRequest.getContentType()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.http.HttpServletRequest.getContentLength()I",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.http.HttpServletRequest.getRemoteUser()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.http.HttpServletRequest.getQueryString()Ljava/lang/String;",
+          "labels": "return(LL)"
+        }
+      ]
+    },
+    {
+      "category": "url tampering",
+      "tag": "src_ut",
+      "sig": [
+        {
+          "name": "javax.servlet.http.HttpServletRequest.getScheme()Ljava/lang/String;",
+          "labels": "return(LL)"
+        }
+      ]
+    },
+    {
+      "category": "cookie poisoning",
+      "tag": "src_cp",
+      "sig": [
+        {
+          "name": "javax.servlet.http.Cookie.getValue()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.http.Cookie.getPath()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.http.Cookie.getComment()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.http.Cookie.getDomain()Ljava/lang/String;",
+          "labels": "return(LL)"
+        },
+        {
+          "name": "javax.servlet.http.Cookie.getName()Ljava/lang/String;",
+          "labels": "return(LL)"
+        }
+      ]
+    }
+  ]
+}

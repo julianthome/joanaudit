@@ -1,0 +1,66 @@
+{
+  "profiles": [
+    {
+      "name": "xpati",
+      "set": [
+        "src_pt",
+        "dcl_xi",
+        "snk_xi"
+      ]
+    },
+    {
+      "name": "sqli",
+      "set": [
+        "src_cp",
+        "src_pt",
+        "dcl_sqli",
+        "snk_sqli",
+        "dcl_prep",
+        "snk_prep",
+        "snk_sqli"
+      ]
+    },
+    {
+      "name": "xmli",
+      "set": [
+        "src_pt",
+        "dcl_xml",
+        "snk_xml"
+      ]
+    },
+    {
+      "name": "command execution",
+      "set": [
+        "src_pt",
+        "snk_ce"
+      ]
+    },
+    {
+      "name": "xss",
+      "set": [
+        "src_ss",
+        "src_pt",
+        "dcl_html",
+        "dcl_xss",
+        "dcl_xml",
+        "dcl_enc",
+        "snk_xss"
+      ]
+    },
+    {
+      "name": "class loading",
+      "set": [
+        "src_pt",
+        "snk_cll"
+      ]
+    },
+    {
+      "name": "ldapi",
+      "set": [
+        "src_pt",
+        "dcl_li",
+        "snk_li"
+      ]
+    }
+  ]
+}

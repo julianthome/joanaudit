@@ -1,0 +1,35 @@
+{
+  "autofix": [
+    {
+      "sinktag": "snk_xi",
+      "ctx": [
+        {
+          "dcl": "dcl_xi",
+          "pattern": ".*"
+        }
+      ]
+    },
+    {
+      "sinktag": "snk_sqli",
+      "ctx": [
+        {
+          "dcl": "dcl_sqli",
+          "pattern": ".*"
+        }
+      ]
+    },
+    {
+      "sinktag": "snk_xml",
+      "ctx": [
+        {
+          "dcl": "dcl_xmlatt",
+          "pattern": "<[^>]+[a-zA-Z]+="
+        },
+        {
+          "dcl": "dcl_xml",
+          "pattern": "[^<]+.*"
+        }
+      ]
+    }
+  ]
+}

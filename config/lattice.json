@@ -1,0 +1,40 @@
+{
+  "lattice": {
+    "levels": [
+      {
+        "desc": "non-confidential and trusted",
+        "label": "LH"
+      },
+      {
+        "desc": "confidential and trusted",
+        "label": "HH"
+      },
+      {
+        "desc": "nonconfidential and untrusted",
+        "label": "LL"
+      },
+      {
+        "desc": "confidential and untrusted",
+        "label": "HL"
+      }
+    ],
+    "<=": [
+      {
+        "lhs": "LL",
+        "rhs": "HL"
+      },
+      {
+        "lhs": "HH",
+        "rhs": "HL"
+      },
+      {
+        "lhs": "LH",
+        "rhs": "LL"
+      },
+      {
+        "lhs": "LH",
+        "rhs": "HH"
+      }
+    ]
+  }
+}

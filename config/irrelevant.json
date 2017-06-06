@@ -1,0 +1,12 @@
+{
+  "irrelevant": [
+    "java\\.lang\\.Exception.*",
+    "javax\\.servlet.*",
+    "org\\.kamranzafar\\.auth\\.rs\\.AuthResponse.*",
+    "java\\.lang\\.Throwable.*",
+    "javax\\.servlet\\..*",
+    "org\\.owasp\\.esapi\\.Encoder.*",
+    "net\\.sf\\.regain\\.util\\.sharedtag\\.*",
+    "java\\.lang\\..*"
+  ]
+}
