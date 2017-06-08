@@ -61,9 +61,9 @@ i.e. a set of Java packages or classes that can be dropped during the SDG
 construction as well as irrelevant functions that are not traversed when
 performing the slicing. Moreover, the configuration includes a set of
 entrypoints, i.e. the starting points for SDG construction. The file
-*proviles.json* contains categories of sources, sinks, and declassifiers. If
+`proviles.json` contains categories of sources, sinks, and declassifiers. If
 sources, sinks and declassifiers are connected by a path but do not belong to
-the same category, they are filtered out. The file *autofix.xml* contains
+the same category, they are filtered out. The file `autofix.json` contains
 mappings from sinks to declassifier and context patterns that a string, which
 is used in a sink, has to match in order to identify an appropriate
 declassifier to fix the vulnerability. The following subsections explain the
@@ -78,15 +78,15 @@ declassifiers to sinks). We are using IFC to filter out those paths that can be
 considered as secure.
 
 A lattice is a partial ordered set of security levels. The configuration file
-*lattice.json* illustrates the configuration of a [diamond
+`lattice.json` illustrates the configuration of a [diamond
 lattice](https://www.cs.cornell.edu/andru/papers/csfw04.pdf) as depicted in the
-figure below. The root object *lattice* contains *levels* sub-objects that
-define the different security levels of the lattice, whereas the *<=*
-array contains the relations between them. Each *level* element object
-contains the name of the security level to be used (*id*) and a short
-description text (*desc*). The *<=* (smaller or equals) array defines the
-actual relation between the security levels. The attribute *lhs* stands for
-left hand side (the left side of the smaller or equals operation) whereas *rhs*
+figure below. The root object `lattice` contains `levels` sub-objects that
+define the different security levels of the lattice, whereas the `<=`
+array contains the relations between them. Each `level` element object
+contains the name of the security level to be used (`id`) and a short
+description text (`desc`). The `<=` (smaller or equals) array defines the
+actual relation between the security levels. The attribute `lhs` stands for
+left hand side (the left side of the smaller or equals operation) whereas `rhs`
 is the right hand side.  The levels that are defined in `lattice.json` can be
 used to element sources, sinks and declassifiers in their respective
 configuration files.
@@ -173,10 +173,10 @@ two advanelementes:
   just consider those classes of sources, sinks and declassifiers that are of
   interest to him.
 
-The properties *category* and *tag* can be freely defined.  However, it is
-important to note that *tag* is used by JoanAudit to match given signatures
-with each other.  The *labels* attribute should match the following regular
-expression: *(return|all|[0-9]+)(security-level)*:
+The properties `category` and `tag` can be freely defined.  However, it is
+important to note that `tag` is used by JoanAudit to match given signatures
+with each other.  The `labels` attribute should match the following regular
+expression: `(return|all|[0-9]+)(security-level)`:
 
 * return: Return node of the function is labeled.
 * all: The whole function entry is labeled.
@@ -185,17 +185,17 @@ expression: *(return|all|[0-9]+)(security-level)*:
   static methods is 0).
 * security-level : The security label that is being used for the selected part.
   The configuration of this part is dependent on the lattice configuration
-  where security levels can be freely defined in the *label* in the lattice
+  where security levels can be freely defined in the `label` in the lattice
   configuration. In our diamond lattice example, security-level could be one of
   LL, HH, LH or HL.
 
-In the example above, the return value of *getParameter()* is supposed to be
-labeled with the *LL*.
+In the example above, the return value of `getParameter()` is supposed to be
+labeled with the `LL`.
 
 The configuration for sinks listed below looks exactly the same as compared to
 the configuration of sources, and the only difference is name of the key of the
-top-level property which is *sinks* instead of *sources*. In the example below,
-we label the first parameter of *executeQuery()* with the security label HH.
+top-level property which is `sinks` instead of `sources`. In the example below,
+we label the first parameter of `executeQuery()` with the security label HH.
 
 ``` json
 {
@@ -234,20 +234,20 @@ below.
 
 By and large, the declassifier configuration is the same as compared to sources
 and sinks with two exceptions: the name of key of the top-level property must
-have the value *declassifiers*, and the structure of the attribute *parlabels*
-has to match the regular expression *(return|all|[0-9]+)(security-level0 >
-secuirty-level1)* whereas *securitylevel0* is the required and
-*security-level1* is the provided security level. The required security level
+have the value `declassifiers`, and the structure of the attribute `parlabels`
+has to match the regular expression `(return|all|[0-9]+)(security-level0 >
+secuirty-level1)` whereas `securitylevel0` is the required and
+`security-level1` is the provided security level. The required security level
 imposes the restriction on arriving information to have a security level
-smaller then or equal to than *securityLevel0* whereas *securityLevel1* is the
+smaller then or equal to than `securityLevel0` whereas `securityLevel1` is the
 security-level to which the arriving information should be declassified to.
-Declassification only makes sense if *security-level1* is smaller or equals
-than *security-level0*. In our example above, we declassify the information
-that passes through the first parameter of *encodeForXPath()* from *LL*
-(non-confidential and untrusted) to *HH* (confidential and untrusted). In other
+Declassification only makes sense if `security-level1` is smaller or equals
+than `security-level0`. In our example above, we declassify the information
+that passes through the first parameter of `encodeForXPath()` from `LL`
+(non-confidential and untrusted) to `HH` (confidential and untrusted). In other
 words, we are lowering the cautiousness of data that passes through the
-*encodeForSQL()* since it prevents malicious users from launching XPath
-attacks. *HH* data can be used more freely than *LL* data.
+`encodeForSQL()` since it prevents malicious users from launching XPath
+attacks. `HH` data can be used more freely than `LL` data.
 
 ## Exclusions and Irrelevant functions
 
@@ -280,9 +280,9 @@ slicing phase.
 
 Entrypoints are starting points for the SDG generation. JoanAudit analyzes the
 bytecode and searches for possible entrypoints. The following code snippet
-configures 4 possible entrypoints, namely *doPost()*, *doGet()*, *service()*
-and main, whereas the former 3 share the same prefix given in the *name*
-attribute of the *entrypoint* element. JoanAudit searches for entrypoint with
+configures 4 possible entrypoints, namely `doPost()`, `doGet()`, `service()`
+and main, whereas the former 3 share the same prefix given in the `name`
+attribute of the `entrypoint` element. JoanAudit searches for entrypoint with
 matching signatures and for implementations of the same function for classes
 that inherit or implement from other classes, abstract classes and/or
 interfaces.
@@ -309,9 +309,9 @@ hence, it reduces the manual effort for security auditors.
 
 The first reason for using categories is that some declassifiers and sinks are
 not related while others are. For example, the sanitization function
-*encodeForSQL()* sanitizes strings that can be used safely as parameter of
-*executeQuery()*. But a flow of a string that contains the result of
-*encodeForSQL()* to an SQL sink like *executeQuery()* cannot be considered as
+`encodeForSQL()` sanitizes strings that can be used safely as parameter of
+`executeQuery()`. But a flow of a string that contains the result of
+`encodeForSQL()` to an SQL sink like `executeQuery()` cannot be considered as
 safe.
 
 The second reason for using categories is to allow security auditors to profile
@@ -320,9 +320,9 @@ declassifiers, auditors do not want to create a new configuration for each
 application. They can use categories instead, to focus their auditing task just
 on particular sources, sinks and can leave out all functions that are known to
 be secure. According to the configuration snippet below, only sources of the
-category *src_cp*, *src_pt* (as configured in *sources.json*), declassifiers of
-the category *dcl_sqli*, *dcl_prep* (as configured in *declassifiers.json*), and
-sinks of the category *snk_sqli* and *snk_prep* are matched.
+category `src_cp`, `src_pt` (as configured in `sources.json`), declassifiers of
+the category `dcl_sqli`, `dcl_prep` (as configured in `declassifiers.json`), and
+sinks of the category `snk_sqli` and `snk_prep` are matched.
 
 ``` json
 {
@@ -401,11 +401,11 @@ The following table explains the meaning of the different options that can be co
 | biofuzz-tk (short/ long option)        | meaning |
 | :---------------------------------------------------- | :--------------------------|
 |-arch,--archivepath <arch>   | Path to the jar file to test for security vulnerabilites - note that this does not work for ear/war (extract them first and use the dir option) |
-| -cfg,--config <cfg>        |  Path to the JoanAudit configuration file in XML format. The basename has to be config.xml. You can work with xincludes.|
+| -cfg,--config <cfg>        |  Path to the JoanAudit configuration dir|
 | -cp,--classpath <cp>  |                      Classpath - multiple entries should be separated by ':' |
 | -dir,--directorypath <dir>   |               Path to the directory containing the java sources |
 | -ept,--entrypoint <entrypoint>  |            The entrypoint to start the analysis |
-| -fix,--autofix 			|   Try to fix vulnerability (autofix.xml is used for filtering)|
+| -fix,--autofix 			|   Try to fix vulnerability (autofix.json is used for filtering)|
 | -h                           |               Print this message |
 | -in,--sdg-in-file <inputfile>  |             Read the SDG file |
 | -jbd,--joanabasedir <jbd>     |              Joana Basedir - needed to load Java stubs. |
@@ -420,20 +420,19 @@ The following table explains the meaning of the different options that can be co
 ## Listing possible entrypoints
 
 Every function can be defined as entrypoint. JoanAudit searches for entrypoints
-that are configured in the *entrypoints.xml* section of the configuration file
-*config.xml*.
+that are configured in the *entrypoints.json* file.
 
 ``` bash
 java -jar joanaudit.jar -arch foo.jar -lept -cfg config.xml -cp "lib.jar"
 ```
 
-The *jbd* option points the the location of the joana directory. The option
-*arch* is devoted to the JAR archive of the program to be analyzed. The *lept*
+The `jbd` option points the the location of the joana directory. The option
+`arch` is devoted to the JAR archive of the program to be analyzed. The `lept`
 options is used for printing out all entrypoints that are present in the
 application. The generic entrypoints that are present in the configuration file
-are used as filters. The *cp* option is used for defining libraries that have
+are used as filters. The `cp` option is used for defining libraries that have
 to be or that should be included for constructing the SDG. In case of multiple
-libraries, one can separate them using *':'*. A possible output from JoanAudit
+libraries, one can separate them using `:`. A possible output from JoanAudit
 might look as follows:
 
 ``` bash
@@ -448,7 +447,7 @@ With the entrypoints that were returned after launching the command above, we
 can analyze the program with the following command:
 
 ``` bash
-java -jar joanaudit.jar -arch foo.jar -ept "simple.Simple.doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" -cfg config.xml -cp "lib.jar" -dcl -nvul 1
+java -jar joanaudit.jar -arch foo.jar -ept "simple.Simple.doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" -cfg <config-dir> -cp "lib.jar" -dcl -nvul 1
 ```
 
 JoanAudit might produce the following report consisting of an overview page
