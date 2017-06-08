@@ -17,8 +17,11 @@
 
 # Screencast
 
-The screencast of JoanAudit is made available on YouTube: [![Screencast of
-JoanAudit](https://img.youtube.com/vi/s6pGjdrUbYc/0.jpg)](https://www.youtube.com/watch?v=s6pGjdrUbYc)
+The screencast of JoanAudit is made available on YouTube:
+
+[![Screencast of JoanAudit](https://www.dropbox.com/s/9h9vfj4o31m69cf/JoanAuditThumnail.png?dl=1)](
+https://www.youtube.com/watch?v=s6pGjdrUbYc "JoanAudit: A Tool for Auditing
+Common Injection Vulnerabilities")
 
 The slides of the screencast can be downloaded from
 [here](https://www.dropbox.com/s/4yksan4ksvtub6w/ESEC%3AFSE2017Demo.pdf?dl=1).
