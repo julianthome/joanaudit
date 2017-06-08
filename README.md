@@ -17,6 +17,9 @@
 
 # Screencast
 
+The screencast of JoanAudit is made available on YouTube: [![Screencast of
+JoanAudit](https://img.youtube.com/vi/s6pGjdrUbYc/0.jpg)](https://www.youtube.com/watch?v=s6pGjdrUbYc)
+
 The slides of the screencast can be downloaded from
 [here](https://www.dropbox.com/s/4yksan4ksvtub6w/ESEC%3AFSE2017Demo.pdf?dl=1).
 
