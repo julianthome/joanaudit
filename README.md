@@ -342,11 +342,42 @@ sinks of the category *snk_sqli* and *snk_prep* are matched.
 
 # Installation and Usage
 
-For requesting access to the JoanAudit executable, please send an email to
-julian.thome@uni.lu.
-
 The tool is a single, self-contained jar-File that can be executed from the
-command line.  Before running it, please set the environment variable
+command line.  
+
+If you would like to try JoanAudit, please have a look the `Dockerfile` in the
+`docker/` directory of this repository. You can create the JoanAudit container
+by invoking the following instruction from inside the `docker/` directory:
+
+``` bash
+docker build -t joanaudit .
+```
+
+For running the container, please execute the following command:
+
+``` bash
+docker run -p 80:80 -p 8080:8080 -p 2222:22 joanaudit
+```
+
+Please note that the ports 8080 (tomcat), 22 (ssh) and 80 (http) are mapped in
+this example since we require access to WebGoat, JoanAudit through ssh and to
+the generated report, respectively.
+
+Afterwards, you should be able to see the WebGoat login page when typing the
+URL `http://localhost:8080/WebGoat-5.4/attack` into the address bar of you
+browser. Furthermore, you should be forwarded to the apache default page when
+typing `http://localhost:80` in the address bar of your browser, and `ssh -p
+2222 root@localhost` (with password `root`) should open up and SSH connection
+to the container.
+
+
+
+
+
+
+## Usage
+
+Before running it, please set the environment variable
 *JAVA_HOME* with the following command:
 
 ``` bash
