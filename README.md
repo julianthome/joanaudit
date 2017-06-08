@@ -1,5 +1,7 @@
 # JoanAudit
 
+[Screencast](#screencast)
+
 [Overview](#overview)
 
 [Installation and Usage](#installation-and-usage)
@@ -8,11 +10,15 @@
 
 [Test subjects](#test-subjects)
 
-[Notes](#notes)
-
 [Publications](#publications)
 
 [References](#references)
+
+
+# Screencast
+
+The slides of the screencast can be downloaded from
+[here](https://www.dropbox.com/s/4yksan4ksvtub6w/ESEC%3AFSE2017Demo.pdf?dl=1).
 
 
 # Overview
