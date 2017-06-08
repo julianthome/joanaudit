@@ -456,7 +456,7 @@ view which gives you the details about the program statements which are
 involved in a vulnerability.
 
 ![](https://www.dropbox.com/s/ogcv5noqyuhtscq/report.png?dl=1)
-![](https://www.dropbox.com/s/ogcv5noqyuhtscq/detail.png?dl=1)
+![](https://www.dropbox.com/s/mll2nhtjm48j38y/detail.png?dl=0)
 
 
 # Test subjects
