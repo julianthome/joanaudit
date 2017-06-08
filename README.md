@@ -10,6 +10,8 @@
 
 [Notes](#notes)
 
+[Publications](#publications)
+
 [References](#references)
 
 
@@ -468,6 +470,17 @@ In our experiments, we evaluated JoanAudit on the following test subjects:
 * [Apache Roller 5.1.1](http://roller.apache.org/)
 * [Pebble 2.6.4](http://pebble.sourceforge.net/)
 * [Regain 2.1.0](http://regain.sourceforge.net/download.php?lang=de)
+
+
+# Publications
+
+* Julian Thomé, Lwin Khin Shar, Lionel Briand, *Security Slicing for Auditing
+  XML, Path and SQL Injection Vulnerabilities*, ISSRE, 2015
+  [http://orbilu.uni.lu/handle/10993/21795](http://orbilu.uni.lu/handle/10993/21795)
+
+* Julian Thomé, Lwin Khin Shar, Domenico Bianculli, Lionel Briand *Security
+  Slicing for Auditing Common Injection Vulnerabilities*, JSS, 2017
+  [http://orbilu.uni.lu/handle/10993/29924](http://orbilu.uni.lu/handle/10993/29924)
 
 
 # References
