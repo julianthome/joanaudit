@@ -338,8 +338,6 @@ sinks of the category *snk_sqli* and *snk_prep* are matched.
     }]
 }
 ```
-
-
 # Installation and Usage
 
 The tool is a single, self-contained jar-File that can be executed from the
@@ -370,9 +368,8 @@ typing `http://localhost:80` in the address bar of your browser, and `ssh -p
 2222 root@localhost` (with password `root`) should open up and SSH connection
 to the container.
 
-
-
-
+After connecting via SSH to the container, you will find the JoanAudit binary
+in the `/opt/joanaudit` directory.
 
 
 ## Usage
@@ -452,23 +449,15 @@ can analyze the program with the following command:
 java -jar joanaudit.jar -arch foo.jar -ept "simple.Simple.doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" -cfg config.xml -cp "lib.jar" -dcl -nvul 1
 ```
 
-JoanAudit might produce the following output:
+JoanAudit might produce the following report consisting of an overview page
+which lists all vulnerabilities that have been found. After clicking on one of
+the paths (row in the overview table), you will be redirected to the detail
+view which gives you the details about the program statements which are
+involved in a vulnerability.
 
-``` bash
-For sink xpath injection (snk_xi)(145):
-PATH BEGIN------------------------------------------
-* Control Flow:[org/owasp/webgoat/lessons/XPATHInjection.java] 131->132->138->139->140->141->142->143->144->145
-* Data Flow:([org/owasp/webgoat/lessons/XPATHInjection.java] 143->145)(141->145)(144->143)(143->144)(131->143)(139->142)(140->141)(138->139)(131->132)
-* Control Dependencies:([org/owasp/webgoat/lessons/XPATHInjection.java] 143->145)(144->143)(143->144)(142->143)(141->142)(140->141)(139->140)(138->139)(132->138)
-* Conditions :[org/owasp/webgoat/lessons/XPATHInjection.java] 132
-* Nodes :73
-* Edges :36
-PATH END--------------------------------------------
-```
+![](https://www.dropbox.com/s/ogcv5noqyuhtscq/report.png?dl=1)
+![](https://www.dropbox.com/s/ogcv5noqyuhtscq/detail.png?dl=1)
 
-JoanAudit reports the complete Path, Condition, Control Dependencies and Calls
-in sequences of line numbers. If there is a scope change (calls that lead the
-execution to another class), the target class is highlighted in brackets *[]*.
 
 # Test subjects
 
