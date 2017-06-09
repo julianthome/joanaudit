@@ -29,13 +29,12 @@ The slides of the screencast can be downloaded from
 
 # Overview
 
-JoanAudit is a program slicing tool for automatic extraction of security slices
-from Java Web programs. Security slices are concise and minimal pieces of code
-that are essential for auditing XML, XPath, and SQL injection--common and
-serious security issues for Web applications and Web services. JoanAudit is
-based on the [Joana](http://pp.ipd.kit.edu/projects/joana/) framework which may
-be downloaded from [here](https://github.com/jgf/joana).  For requesting access
-to the JoanAudit executable, please send an email to julian.thome@uni.lu.
+JoanAudit is a security slicing tool for auditing common injection
+vulnerabilities. Security slices are concise and minimal pieces of code that
+are essential for auditing XML, XPath, and SQL injection--common and serious
+security issues for Web applications and Web services. JoanAudit is based on
+the [Joana](http://pp.ipd.kit.edu/projects/joana/) framework which may be
+downloaded from [here](https://github.com/jgf/joana).
 
 ![](https://www.dropbox.com/s/y5rwpp89nx2edco/tool.png?dl=1)
 
@@ -50,12 +49,12 @@ potentially malicious input.  By means of Joana, JoanAudit generates a System
 Dependence Graph (SDG) from the Java bytecode and automatically annotates the
 given source code based on the pre-defined list of sources, sinks and
 declassifiers.  Afterwards, JoanAudit creates a list of security slices between
-sources and sinks, by filtering-out those paths that are irrelevant or that do
-not contain an illegal flow between sources and sinks. The output of JoanAudit
-is a report that lists potentially vulnerable paths of the program being
-analyzed. JoanAudit is a tool that helps security auditors to perform their
-security auditing tasks more efficiently by pinpointing potentially vulnerable
-paths of a given program.
+sources and sinks, by first generating program chops and then filtering-out
+those paths that are irrelevant or that do not contain an illegal flow between
+sources and sinks. The output of JoanAudit is a report that lists potentially
+vulnerable paths of the program being analyzed. JoanAudit is a tool that helps
+security auditors to perform their security auditing tasks more efficiently by
+pinpointing potentially vulnerable paths of a given program.
 
 
 # Configuration
@@ -175,8 +174,8 @@ of bytecode signatures belonging to the category. The `labels` property assigns
 a security label to a parameter of the bytecode signature which can then be
 used for declassification.
 
-Sources, sinks and declassifiers are categorized which has
-two advanelementes:
+The categorization of sources, sinks and declassifiers has the following
+advantages:
 
 - We can just consider sources/sinks and declassifiers that belong to the same
   category.
@@ -238,7 +237,7 @@ below.
       "sig": [
         {
           "name": "org.owasp.esapi.Encoder.encodeForSQL(Lorg/owasp/esapi/codecs/Codec,Ljava/lang/String;)Ljava/lang/String;",
-          "labels": "1(LL>HH)"
+          "labels": "1(HL>HH)"
         }]
     }]
 }
@@ -254,20 +253,19 @@ imposes the restriction on arriving information to have a security level
 smaller then or equal to than `securityLevel0` whereas `securityLevel1` is the
 security-level to which the arriving information should be declassified to.
 Declassification only makes sense if `security-level1` is smaller or equals
-than `security-level0`. In our example above, we declassify the information
-that passes through the first parameter of `encodeForXPath()` from `LL`
-(non-confidential and untrusted) to `HH` (confidential and untrusted). In other
+than `security-level0` according to the defined partial order relation in the
+security lattice. In our example above, we declassify the information that
+passes through the first parameter of `encodeForSQL()` from `HL`
+(confidential and untrusted) to `HH` (confidential and trusted). In other
 words, we are lowering the cautiousness of data that passes through the
-`encodeForSQL()` since it prevents malicious users from launching XPath
-attacks. `HH` data can be used more freely than `LL` data.
+`encodeForSQL()` since it prevents malicious users from launching SQL injection
+attacks. `HH` data can be used more freely than `HL` data.
 
 ## Exclusions and Irrelevant functions
 
 Exclusion rules are useful for improving scalability by reducing the SDG
 construction time. The following code snippet illustrates a sample
-configuration for excluding three packages from the SDG build process. You can
-also exclude single classes. In the example below, two packages and one class
-are filtered out.
+configuration for excluding three packages from the SDG build process. 
 
 ``` json
 {
@@ -275,11 +273,6 @@ are filtered out.
     "javax/swing/event.*",
     "javax/swing/text.*",
     "javax/swing/table.*",
-    "javax/swing/undo.*",
-    "javax/swing/plaf.*",
-    "javax/swing/.*",
-    "java/awt/.*",
-    "java/lang/Thread.*"
   ]
 }
 ```
@@ -292,12 +285,10 @@ slicing phase.
 
 Entrypoints are starting points for the SDG generation. JoanAudit analyzes the
 bytecode and searches for possible entrypoints. The following code snippet
-configures 4 possible entrypoints, namely `doPost()`, `doGet()`, `service()`
-and main, whereas the former 3 share the same prefix given in the `name`
-attribute of the `entrypoint` element. JoanAudit searches for entrypoint with
-matching signatures and for implementations of the same function for classes
-that inherit or implement from other classes, abstract classes and/or
-interfaces.
+configures 3 possible entrypoints, namely `doPost()`, `doGet()`, `service()`
+which share the same `prefix`. JoanAudit searches for entrypoints with matching
+signatures and for implementations of the same function for classes that
+inherit or implement from other classes, abstract classes and/or interfaces.
 
 ``` json
 {
@@ -330,11 +321,11 @@ The second reason for using categories is to allow security auditors to profile
 the application under test. If you have a rich set of sources, sinks and
 declassifiers, auditors do not want to create a new configuration for each
 application. They can use categories instead, to focus their auditing task just
-on particular sources, sinks and can leave out all functions that are known to
-be secure. According to the configuration snippet below, only sources of the
+on particular source/sink pairs and leave out all functions that are known
+to be secure. According to the configuration snippet below, only sources of the
 category `src_cp`, `src_pt` (as configured in `sources.json`), declassifiers of
-the category `dcl_sqli`, `dcl_prep` (as configured in `declassifiers.json`), and
-sinks of the category `snk_sqli` and `snk_prep` are matched.
+the category `dcl_sqli`, `dcl_prep` (as configured in `declassifiers.json`),
+and sinks of the category `snk_sqli` and `snk_prep` are matched.
 
 ``` json
 {
@@ -352,9 +343,11 @@ sinks of the category `snk_sqli` and `snk_prep` are matched.
     }]
 }
 ```
+
+
 # Installation and Usage
 
-The tool is a single, self-contained jar-File that can be executed from the
+The tool is a single, self-contained `jar` file that can be executed from the
 command line.  
 
 If you would like to try JoanAudit, please have a look the `Dockerfile` in the
@@ -371,9 +364,9 @@ For running the container, please execute the following command:
 docker run -p 80:80 -p 8080:8080 -p 2222:22 joanaudit
 ```
 
-Please note that the ports 8080 (tomcat), 22 (ssh) and 80 (http) are mapped in
-this example since we require access to WebGoat, JoanAudit through ssh and to
-the generated report, respectively.
+Please note the port mappings of the ports 8080 (tomcat), 22 (ssh) and 80
+(http) which we require to get access to WebGoat, JoanAudit
+and to the generated HTML report, respectively.
 
 Afterwards, you should be able to see the WebGoat login page when typing the
 URL `http://localhost:8080/WebGoat-5.4/attack` into the address bar of you
@@ -385,6 +378,8 @@ to the container.
 After connecting via SSH to the container, you will find the JoanAudit binary
 in the `/opt/joanaudit` directory.
 
+After generating the report, you can open it by visiting
+`http://localhost:80/joanaudit-report` with your browser.
 
 ## Usage
 
@@ -435,7 +430,7 @@ Every function can be defined as entrypoint. JoanAudit searches for entrypoints
 that are configured in the *entrypoints.json* file.
 
 ``` bash
-java -jar joanaudit.jar -arch foo.jar -lept -cfg config.xml -cp "lib.jar"
+java -jar joanaudit.jar -arch foo.jar -lept -cfg ./config -cp "lib.jar"
 ```
 
 The `jbd` option points the the location of the joana directory. The option
@@ -459,7 +454,7 @@ With the entrypoints that were returned after launching the command above, we
 can analyze the program with the following command:
 
 ``` bash
-java -jar joanaudit.jar -arch foo.jar -ept "simple.Simple.doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" -cfg <config-dir> -cp "lib.jar" -dcl -nvul 1
+java -jar joanaudit.jar -arch foo.jar -ept "simple.Simple.doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" -cfg ./config -cp "lib.jar" -dcl
 ```
 
 JoanAudit might produce the following report consisting of an overview page
@@ -476,11 +471,14 @@ involved in a vulnerability.
 
 In our experiments, we evaluated JoanAudit on the following test subjects:
 
-* [PubSubHubbub 0.3](https://code.google.com/p/pubsubhubbub/)
-* [WebGoat 5.2](https://www.owasp.org/index.php/Category:OWASP_WebGoat_Project)
-* [Apache Roller 5.1.1](http://roller.apache.org/)
-* [Pebble 2.6.4](http://pebble.sourceforge.net/)
-* [Regain 2.1.0](http://regain.sourceforge.net/download.php?lang=de)
+* [WebGoat 5.2](https://www.owasp.org/index.php/Category:OWASP_WebGoat_Project):
+  a deliberately in-secured Web application/service for the purpose of teaching security vulnerabilities
+* [Apache Roller 5.1.1](http://roller.apache.org/): a blogging application with Web Service APIs
+* [Pebble 2.6.4](http://pebble.sourceforge.net/): a blogging application with Web service APIs
+* [Regain 2.1.0](http://regain.sourceforge.net/download.php?lang=de): a production-grade search engine used internally by one of the biggest drug stores in Europe
+* [pubsubhubbub-java 0.3](https://code.google.com/p/pubsubhubbub/): the most popular Java project related to the PubSubHubbub protocol in the Google Code archive
+* [rest-auth-proxy](https://github.com/kamranzafar/rest-auth-proxy): an LDAP micro-service
+* [TPC-(APP|C|W)](http://www.tpc.org/tpc_app/): standard security benchmark accepted as representative of real environments by the Transactions processing Performance Council
 
 
 # Publications
