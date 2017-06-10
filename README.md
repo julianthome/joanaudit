@@ -1,5 +1,8 @@
 # JoanAudit
 
+A security slicing tool that helps security auditors to perform their security
+auditing tasks more efficiently.
+
 [Screencast](#screencast)
 
 [Overview](#overview)
@@ -41,22 +44,23 @@ downloaded from [here](https://github.com/jgf/joana).
 The general overview is depicted in the figure above. The user configures a
 lattice (a partial order relation) and provides a list of source, sink and
 declassifier bytecode signatures with their respective security levels
-configured in the `config.json` file. 
-Sources are functions that return data that is manipulable by a user (e.g.
-``getParameter()`` or ``System.getProperty()``); sinks are usually sensitive
-functions where user provided data might flow to and is processed (e.g.
-``executeQuery()``); and declassifiers are functions that escape user-provided,
-potentially malicious input.  By means of Joana, JoanAudit generates a System
-Dependence Graph (SDG) from the Java bytecode and automatically annotates the
-given source code based on the pre-defined list of sources, sinks and
-declassifiers.  Afterwards, JoanAudit creates a list of security slices between
-sources and sinks, by first generating program chops and then filtering-out
-those paths that are irrelevant or that do not contain an illegal flow between
-sources and sinks. The output of JoanAudit is a report that lists potentially
-vulnerable paths of the program being analyzed. JoanAudit is a tool that helps
-security auditors to perform their security auditing tasks more efficiently by
-pinpointing potentially vulnerable paths of a given program.
+configured in the `config.json` file.  Sources are functions that give access
+to data from the environment (e.g. `getParameter()` or `System.getProperty()`);
+sinks are security-sensitive operations where data might flow to (e.g.
+`executeQuery()`); and declassifiers are functions that sanitize user-provided,
+potentially malicious input (e.g. `encodeForSQL()`).  
 
+
+By means of Joana, JoanAudit generates a System Dependence Graph (SDG) from the
+Java bytecode and automatically annotates the latter based on a pre-defined
+list of sources, sinks and declassifiers.  Afterwards, JoanAudit creates a list
+of security slices between sources and sinks, by first generating program
+chops, i.e. the intersection of forward- and backward slices from the sources
+and sinks, respectively, and then filtering-out those paths which can be
+considered as secure or irrelevant. 
+
+The output of JoanAudit is a report that lists potentially vulnerable paths of
+the program.  
 
 # Configuration
 
