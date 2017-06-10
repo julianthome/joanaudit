@@ -107,7 +107,7 @@ description text (`desc`). The `<=` (smaller equals) array defines the
 actual relation between the security levels. The attribute `lhs` stands for
 left hand side (the left side of the smaller or equals operation) whereas `rhs`
 is the right hand side.  The levels that are defined in `lattice.json` can be
-used to element sources, sinks and declassifiers in their respective
+used to label sources, sinks and declassifiers in their respective
 configuration files.
 
 ``` json
@@ -194,27 +194,26 @@ advantages:
 
 The properties `category` and `tag` can be freely defined.  However, it is
 important to note that `tag` is used by JoanAudit to match given signatures
-with each other.  The `labels` attribute should match the following regular
-expression: `(return|all|[0-9]+)(security-level)`:
+with each other (Profiling).  The `labels` attribute should match the following
+regular expression: `(return|all|[0-9]+)(security-level)`:
 
 * return: Return node of the function is labeled.
 * all: The whole function entry is labeled.
 * [0-9]: Actual parameter with the given number is labeled (first actual
   parameter for member functions has index 1 whereas the first parameter of a
   static methods is 0).
-* security-level : The security label that is being used for the selected part.
-  The configuration of this part is dependent on the lattice configuration
-  where security levels can be freely defined in the `label` in the lattice
-  configuration. In our diamond lattice example, security-level could be one of
-  LL, HH, LH or HL.
+* security-level : The security label that is used for the selected part. The
+  configuration of this part depends on the lattice configuration where
+  security levels are defined through the `label` attribute. In our diamond
+  lattice example, security-level could be one of `LL`, `HH`, `LH` or `HL`.
 
-In the example above, the return value of `getParameter()` is supposed to be
-labeled with the `LL`.
+In the example above, the return value of `getParameter()` labeled with the
+`LL`.
 
-The configuration for sinks listed below looks exactly the same as compared to
-the configuration of sources, and the only difference is name of the key of the
+The configuration for sinks (depicted below) looks exactly the same as compared to
+the configuration of sources; the only difference is the name of the key of the
 top-level property which is `sinks` instead of `sources`. In the example below,
-we label the first parameter of `executeQuery()` with the security label HH.
+we label the first parameter of `executeQuery()` with the security label `HH`.
 
 ``` json
 {
@@ -255,11 +254,11 @@ By and large, the declassifier configuration is the same as compared to sources
 and sinks with two exceptions: the name of key of the top-level property must
 have the value `declassifiers`, and the structure of the attribute `parlabels`
 has to match the regular expression `(return|all|[0-9]+)(security-level0 >
-secuirty-level1)` whereas `securitylevel0` is the required and
+secuirty-level1)` whereas `securitylevel0` is the required, and
 `security-level1` is the provided security level. The required security level
 imposes the restriction on arriving information to have a security level
 smaller then or equal to than `securityLevel0`; `securityLevel1` is the
-security-level to which the arriving information should be declassified to.
+security-level to which the arriving information should be declassified.
 Declassification only makes sense if `security-level1` is smaller or equals
 than `security-level0` according to the defined partial order relation in the
 security lattice. In our example above, we declassify the information that
@@ -272,7 +271,7 @@ attacks. `HH` data can be used more freely than `HL` data.
 ## Exclusions and Irrelevant functions
 
 Exclusion rules are useful for improving scalability by reducing the SDG
-construction time. The following code snippet illustrates a sample
+construction time. The following snippet illustrates a sample
 configuration for excluding three packages from the SDG build process. 
 
 ``` json
@@ -296,9 +295,8 @@ bytecode and searches for possible entrypoints based on the patterns configured
 in `entrypoints.json`. The following code snippet configures 3 possible
 entrypoints, namely `doPost()`, `doGet()`, `service()` which share the same
 `prefix` (member functions of the same class). JoanAudit searches for
-entrypoints with matching signatures and for implementations of the same
-function for classes that inherit or implement from other classes, abstract
-classes and/or interfaces.
+entrypoints with matching signatures, i.e. all entrypoints that exactly match,
+extend or implement the entrypoint class.
 
 ``` json
 {
@@ -318,10 +316,10 @@ classes and/or interfaces.
 
 The categorization of sources, sinks and declassifiers helps to reduce the
 amount of potentially vulnerable paths that might be reported by JoanAudit and,
-hence it reduces the manual effort for security auditors.
+hence reduces the manual effort for security auditors.
 
 Categorizing sources, sinks and declassifiers is useful for grouping
-semantically connected sources, sinks and declassifiers; for example, the
+them based on their semantic connection; for example, the
 sanitization function `encodeForSQL()` sanitizes strings that can be used
 safely as parameter of `executeQuery()`. But a flow of a string that contains
 the result of `encodeForSQL()` to an XPath sink cannot be considered as safe.
@@ -392,13 +390,13 @@ After generating the report, you can open it by visiting
 ## Tool usage
 
 Before running JoanAudit, please set the environment variable
-*JAVA_HOME* with the following command:
+`JAVA_HOME` by executing following command:
 
 ``` bash
 export JAVA_HOME="<path>"
 ```
 
-The tool can be executed with the following command:
+JoanAudit can be executed with the following command:
 
 ``` bash
 java -jar joanaudit.jar <options>
@@ -411,10 +409,7 @@ type the following command:
 java -jar joanaudit.jar -h
 ```
 
-The following table explains the meaning of the different options that can be
-configured:
-
-
+The following table explains the meaning of the different options:
 
 | JoanAudit (short/ long option)        | meaning |
 | :---------------------------------------------------- | :--------------------------|
@@ -434,15 +429,15 @@ configured:
 | -src,--link_sources <arg>            | links to java sources |
 
 
-
 ## Listing possible entrypoints
 
 Every function can be defined as entrypoint. JoanAudit searches for entrypoints
-that are configured in the *entrypoints.json* file.
+that are configured in the `entrypoints.json` file.
 
 ``` bash
-java -jar joanaudit.jar -arch foo.jar -lept -cfg ./config -cp "lib.jar"
+java -jar joanaudit.jar -arch foo.jar -lept -cfg ./config -cp "lib.jar" 
 ```
+
 
 The option `arch` is devoted to the `jar` archive of the program to be
 analyzed.  The `lept` options is used for printing out all entrypoints that are
@@ -465,7 +460,10 @@ the command above, we can start the analysis of the program with the following
 command:
 
 ``` bash
-java -jar joanaudit.jar -arch foo.jar -ept "simple.Simple.doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" -cfg ./config -cp "lib.jar" -dcl
+java -jar joanaudit.jar -arch foo.jar \
+    -ept "simple.Simple.doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" -cfg ./config -cp "lib.jar" \
+    -src .simple-src/ -repout /var/www/html \
+    -repfmt HTML
 ```
 
 JoanAudit might produce the following report consisting of an overview page
