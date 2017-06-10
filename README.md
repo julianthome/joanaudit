@@ -458,8 +458,8 @@ ept: simple.Simple.doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/
 
 ## Printing potentially vulnerable paths
 
-After picking one of the entrypoints that were returned after launching the
-command above, we can start the analysis of the program with the following
+After picking one of the entrypoints that were returned from the execution of
+the command above, we can start the analysis of the program with the following
 command:
 
 ``` bash
