@@ -326,12 +326,12 @@ the result of `encodeForSQL()` to an XPath sink cannot be considered as safe.
 
 This mechanism allows security auditors to configure JoanAudit according to
 their needs. They can configure their own analysis profile to focus their
-auditing task just on those vulnerability types in which they are
-interested in.  According to the configuration snippet below, only sources of
-the category `src_cp`, `src_pt` (as configured in `sources.json`),
-declassifiers of the category `dcl_sqli`, `dcl_prep` (as configured in
-`declassifiers.json`), and sinks of the category `snk_sqli` and `snk_prep` are
-matched.
+auditing task just on those vulnerability types in which they are interested
+in.  According to the configuration snippet below, only sources of the category
+`src_cp`, `src_pt` (as configured in `sources.json`), declassifiers of the
+category `dcl_sqli`, `dcl_prep` (as configured in `declassifiers.json`), and
+sinks of the category `snk_sqli` and `snk_prep` (as configured in `sinks.json`)
+are matched.
 
 ``` json
 {
@@ -402,13 +402,15 @@ The tool can be executed with the following command:
 java -jar joanaudit.jar <options>
 ```
 
-For looking at the different command line options provided by JoanAudit, please type the following command:
+For looking at the different command line options provided by JoanAudit, please
+type the following command:
 
 ``` bash
 java -jar joanaudit.jar -h
 ```
 
-The following table explains the meaning of the different options that can be configured:
+The following table explains the meaning of the different options that can be
+configured:
 
 
 
@@ -416,20 +418,16 @@ The following table explains the meaning of the different options that can be co
 | :---------------------------------------------------- | :--------------------------|
 | -arch,--archivepath <arch>           | Path to the jar file |
 | -cfg,--config <cfg>                  | Path to the JoanAudit configuration file in JSON format |
-| -cp,--classpath <cp>                 | Classpath - multiple entries should |
-|                                      | be separated by ':' |
+| -cp,--classpath <cp>                 | Classpath - multiple entries can be separated with ':' |
 | -dir,--directorypath <dir>           | path to the directory containing the Java classes |
 | -dump,--dump-class-hierarchy         | Dump the class hierarchy |
 | -ept,--entrypoint <entrypoint>       | The entrypoint to start the analysis |
 | -h                                   | print this message |
 | -in,--sdg-in-file <inputfile>        | read the SDG file |
 | -lept,--list_entrypoints             | List all possible entrypoints |
-|                                      | (config.xml is used for filtering) |
-| -maxpath,--maximal-paths <maxpath>   | number of path considered per |
-|                                      | source-sink pair |
+| -maxpath,--maximal-paths <maxpath>   | number of path considered per source-sink pair |
 | -repfmt,--report_format <arg>        | report formats (JSON|HTML) |
-| -repout,--report_out_dir <arg>       | report destination (directory in |
-|                                      | which the report will be created |
+| -repout,--report_out_dir <arg>       | report destination (directory in which the report will be created |
 | -sdgout,--sdg-out-file <outputfile>  | serialize the SDG to a file |
 | -src,--link_sources <arg>            | links to java sources |
 
@@ -444,14 +442,13 @@ that are configured in the *entrypoints.json* file.
 java -jar joanaudit.jar -arch foo.jar -lept -cfg ./config -cp "lib.jar"
 ```
 
-The `jbd` option points the the location of the joana directory. The option
-`arch` is devoted to the JAR archive of the program to be analyzed. The `lept`
-options is used for printing out all entrypoints that are present in the
-application. The generic entrypoints that are present in the configuration file
-are used as filters. The `cp` option is used for defining libraries that have
-to be or that should be included for constructing the SDG. In case of multiple
-libraries, one can separate them using `:`. A possible output from JoanAudit
-might look as follows:
+The option `arch` is devoted to the `jar` archive of the program to be
+analyzed.  The `lept` options is used for printing out all entrypoints that are
+present in the application. The `cfg` options tells JoanAudit where to find its
+configuration. The `cp` option is used for including additional libraries (e.g.
+stubs) required for constructing the SDG. In case of multiple libraries, you
+can separate them using `:`. A possible output after executing the command
+above may be:
 
 ``` bash
 ept: simple.Simple.doGet(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V
@@ -461,18 +458,19 @@ ept: simple.Simple.doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/
 
 ## Printing potentially vulnerable paths
 
-With the entrypoints that were returned after launching the command above, we
-can analyze the program with the following command:
+After picking one of the entrypoints that were returned after launching the
+command above, we can start the analysis of the program with the following
+command:
 
 ``` bash
 java -jar joanaudit.jar -arch foo.jar -ept "simple.Simple.doPost(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" -cfg ./config -cp "lib.jar" -dcl
 ```
 
 JoanAudit might produce the following report consisting of an overview page
-which lists all vulnerabilities that have been found. After clicking on one of
-the paths (row in the overview table), you will be redirected to the detail
-view which gives you the details about the program statements which are
-involved in a vulnerability.
+which lists all vulnerable paths that have been found. After clicking on one of
+the paths (row in the overview table), you will be redirected to a more
+detailed view which gives you the details about all the program statements
+which are involved in a vulnerability.
 
 ![](https://www.dropbox.com/s/ogcv5noqyuhtscq/report.png?dl=1)
 ![](https://www.dropbox.com/s/mll2nhtjm48j38y/detail.png?dl=1)
