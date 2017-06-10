@@ -1,8 +1,5 @@
 # JoanAudit
 
-A security slicing tool that helps security auditors to perform their security
-auditing tasks more efficiently.
-
 [Screencast](#screencast)
 
 [Overview](#overview)
