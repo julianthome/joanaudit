@@ -207,7 +207,7 @@ regular expression: `(return|all|[0-9]+)(security-level)`:
   security levels are defined through the `label` attribute. In our diamond
   lattice example, security-level could be one of `LL`, `HH`, `LH` or `HL`.
 
-In the example above, the return value of `getParameter()` labeled with the
+In the example above, the return value of `getParameter()` is labeled with the
 `LL`.
 
 The configuration for sinks (depicted below) looks exactly the same as compared to
@@ -483,7 +483,7 @@ In our experiments, we evaluated JoanAudit on the following test subjects:
 * [WebGoat 5.2](https://www.owasp.org/index.php/Category:OWASP_WebGoat_Project):
   a deliberately in-secured Web application/service for the purpose of teaching security vulnerabilities
 * [Apache Roller 5.1.1](http://roller.apache.org/): a blogging application with Web Service APIs
-* [Pebble 2.6.4](http://pebble.sourceforge.net/): a blogging application with Web service APIs
+* [Pebble 2.6.4](http://pebble.sourceforge.net/): a blogging application with Web Service APIs
 * [Regain 2.1.0](http://regain.sourceforge.net/download.php?lang=de): a production-grade search engine used internally by one of the biggest drug stores in Europe
 * [pubsubhubbub-java 0.3](https://code.google.com/p/pubsubhubbub/): the most popular Java project related to the PubSubHubbub protocol in the Google Code archive
 * [rest-auth-proxy](https://github.com/kamranzafar/rest-auth-proxy): an LDAP micro-service
