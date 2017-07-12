@@ -497,6 +497,9 @@ In our experiments, we evaluated JoanAudit on the following test subjects:
   Slicing for Auditing Common Injection Vulnerabilities*, JSS, 2017
   [http://orbilu.uni.lu/handle/10993/29924](http://orbilu.uni.lu/handle/10993/29924)
 
+* Julian Thomé, Lwin Khin Shar, Domenico Bianculli, Lionel Briand *JoanAudit: A
+  Tool for Auditing Common Injection Vulnerabilities*, ESEC/FSE, 2017
+  [http://orbilu.uni.lu/handle/10993/31717](http://orbilu.uni.lu/handle/10993/31717)
 
 # References
 
