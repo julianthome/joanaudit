@@ -146,7 +146,7 @@ configuration files.
 
 ```
 
-![](https://www.dropbox.com/s/swqeiolv8sryd5e/lattice.png?dl=1)
+![](img/lattice.png)
 
 ## Sources, Sinks, Declassifiers
 
