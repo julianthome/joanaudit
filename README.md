@@ -31,7 +31,7 @@ security issues for Web applications and Web services. JoanAudit is based on
 the [Joana](http://pp.ipd.kit.edu/projects/joana/) framework which may be
 downloaded from [here](https://github.com/jgf/joana).
 
-![](https://www.dropbox.com/s/y5rwpp89nx2edco/tool.png?dl=1)
+![](http://www.dropbox.com/s/y5rwpp89nx2edco/tool.png)
 
 The general overview is depicted in the figure above. The user configures a
 lattice (a partial order relation) and provides a list of source, sink and
