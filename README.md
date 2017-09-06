@@ -496,6 +496,12 @@ In our experiments, we evaluated JoanAudit on the following test subjects:
   Tool for Auditing Common Injection Vulnerabilities*, ESEC/FSE, 2017
   [http://orbilu.uni.lu/handle/10993/31717](http://orbilu.uni.lu/handle/10993/31717)
 
+* Julian Thomé, Lwin Khin Shar, Domenico Bianculli, Lionel Briand *An
+  Integrated Approach for Effective Injection Vulnerability Analysis of Web
+  Applications through Security Slicing and Hybrid Constraint Solving*, TR, 2017
+  [http://orbilu.uni.lu/handle/10993/32059](http://orbilu.uni.lu/handle/10993/31717)
+
+
 # References
 
 * [Joana Website](http://pp.ipd.kit.edu/projects/joana/)
